@@ -21,7 +21,7 @@ export function Footer() {
               <div className="space-y-4 md:col-span-1 md:col-start-1">
                 <h3 className="text-xl font-bold text-primary">CardShop POS</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  A hobbiest focused POS, providing easy store management and integration with major e-commerce sites.
+                  Professional POS system for TCG and collectibles shops with Shopify integration and live pricing.
                 </p>
                 <p className="text-xs text-muted-foreground mb-2">
                   Product by <a href={"https://www.shogunn.dev"}><span className="text-purple-500 font-medium">Shogun Dot Dev</span></a>
