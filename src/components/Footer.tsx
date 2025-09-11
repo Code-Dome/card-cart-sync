@@ -18,7 +18,7 @@ export function Footer() {
                     {/* Main Footer Content */}
                     <div className="grid md:grid-cols-3 gap-12 mb-12">
                         {/* Company Info (Left) */}
-                        <div className="flex flex-col items-center text-center md:items-start md:text-left md:space-y-4 md:col-span-1 md:col-start-1">
+                        <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-1">
                             <h3 className="text-xl font-bold text-primary">CardShop POS</h3>
                             <p className="text-muted-foreground leading-relaxed">
                                 Professional POS system for TCG and collectibles shops with Shopify integration and live pricing.
@@ -65,7 +65,7 @@ export function Footer() {
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
                                 <span>Built with</span>
                                 <Heart className="w-3 h-3 text-purple-500" />
-                                <span>for hobbiests</span>
+                                <span>for hobbyists</span>
                             </div>
                         </div>
                     </div>

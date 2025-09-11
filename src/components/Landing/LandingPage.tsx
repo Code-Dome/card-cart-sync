@@ -100,7 +100,7 @@ export const LandingPage = () => {
                   The Ultimate 
                   <span className="bg-gradient-primary bg-clip-text text-transparent"> POS</span>
                   <br />
-                  for Hobbiest Stores
+                  for Hobbyist Stores
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                   Streamline your trading card game shop with our professional POS system. 
