@@ -11,10 +11,9 @@ interface DashboardLayoutProps {
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="min-h-screen bg-background">
-      {/* <SignedOut>
+      <SignedOut>
         <LandingPage />
-      </SignedOut> */}
-      <LandingPage />
+      </SignedOut>
       
       <SignedIn>
         {/* <SubscriptionGate> */}
