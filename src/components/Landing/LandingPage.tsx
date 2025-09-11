@@ -52,7 +52,7 @@ const features = [
 
 const stats = [
   { value: "10,000+", label: "Products Managed" },
-  { value: "500+", label: "Happy Stores" },
+  // { value: "500+", label: "Happy Stores" },
   { value: "99.9%", label: "Uptime" },
   { value: "24/7", label: "Support" }
 ];
@@ -67,7 +67,7 @@ export const LandingPage = () => {
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-gradient-primary rounded-xl animate-glow"></div>
               <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                CollectorPOS
+                CardShop POS
               </span>
             </div>
             <SignInButton>
@@ -99,7 +99,7 @@ export const LandingPage = () => {
                   The Ultimate 
                   <span className="bg-gradient-primary bg-clip-text text-transparent"> POS</span>
                   <br />
-                  for TCG Stores
+                  for Hobbiest Stores
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
                   Streamline your trading card game shop with our professional POS system. 
@@ -133,7 +133,7 @@ export const LandingPage = () => {
               <div className="relative">
                 <img
                   src={dashboardPreview}
-                  alt="CollectorPOS Dashboard"
+                  alt="CardShop POS Dashboard"
                   className="rounded-2xl shadow-2xl border border-border/50"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 rounded-2xl" />
@@ -194,7 +194,7 @@ export const LandingPage = () => {
                 </Badge>
                 <h2 className="text-4xl font-bold leading-tight">
                   Connect with platforms 
-                  <span className="bg-gradient-primary bg-clip-text text-transparent">you already use</span>
+                  <span className="bg-gradient-primary bg-clip-text text-transparent"> you already use</span>
                 </h2>
                 <p className="text-lg text-muted-foreground">
                   Seamlessly integrate with Shopify and TCGPlayer to create a unified ecosystem for your business.
@@ -238,9 +238,9 @@ export const LandingPage = () => {
                   <ShoppingBag className="h-12 w-12 text-success" />
                   <div>
                     <h4 className="font-semibold">Shopify</h4>
-                    <p className="text-sm text-muted-foreground">E-commerce sync</p>
+                    <p className="text-sm text-muted-foreground">E-Commerce sync</p>
                   </div>
-                  <Badge className="bg-success/10 text-success">Connected</Badge>
+                  <Badge className="bg-success/10 text-success">Live</Badge>
                 </div>
               </Card>
               <Card className="p-6 bg-gradient-card border-border/50 hover:shadow-lg transition-all">
@@ -250,15 +250,26 @@ export const LandingPage = () => {
                     <h4 className="font-semibold">TCGPlayer</h4>
                     <p className="text-sm text-muted-foreground">Live pricing</p>
                   </div>
-                  <Badge className="bg-primary/10 text-primary">Active</Badge>
+                   <Badge className="bg-success/10 text-success">Live</Badge>
+                  {/* <Badge className="bg-primary/10 text-primary">Live</Badge> */}
                 </div>
               </Card>
               <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
                 <div className="space-y-4">
                   <RefreshCw className="h-12 w-12 text-muted-foreground" />
                   <div>
-                    <h4 className="font-semibold">QuickBooks</h4>
-                    <p className="text-sm text-muted-foreground">Accounting</p>
+                    <h4 className="font-semibold">Wordpress</h4>
+                    <p className="text-sm text-muted-foreground">E-Commerce Sync</p>
+                  </div>
+                  <Badge variant="secondary">Coming Soon</Badge>
+                </div>
+              </Card>
+              <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
+                <div className="space-y-4">
+                  <RefreshCw className="h-12 w-12 text-muted-foreground" />
+                  <div>
+                    <h4 className="font-semibold">Wix</h4>
+                    <p className="text-sm text-muted-foreground">E-Commerce Sync</p>
                   </div>
                   <Badge variant="secondary">Coming Soon</Badge>
                 </div>
@@ -267,8 +278,8 @@ export const LandingPage = () => {
                 <div className="space-y-4">
                   <BarChart3 className="h-12 w-12 text-muted-foreground" />
                   <div>
-                    <h4 className="font-semibold">Stripe</h4>
-                    <p className="text-sm text-muted-foreground">Payments</p>
+                    <h4 className="font-semibold">XE.com</h4>
+                    <p className="text-sm text-muted-foreground">Currency Conversions</p>
                   </div>
                   <Badge variant="secondary">Coming Soon</Badge>
                 </div>
@@ -287,7 +298,7 @@ export const LandingPage = () => {
               <span className="bg-gradient-primary bg-clip-text text-transparent"> TCG business?</span>
             </h2>
             <p className="text-xl text-muted-foreground">
-              Join hundreds of store owners who have already modernized their operations with CollectorPOS
+              Join other store owners and modernized your operations with CardShop POS
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <SignInButton>
@@ -313,10 +324,13 @@ export const LandingPage = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
               <div className="w-8 h-8 bg-gradient-primary rounded-lg"></div>
-              <span className="text-xl font-bold">CollectorPOS</span>
+              <span className="text-xl font-bold">CardShop POS</span>
             </div>
             <p className="text-muted-foreground text-sm">
-              © 2024 CollectorPOS. Professional POS for TCG & Collectibles.
+              © 2025 Super Hobby (Pty) Ltd. Professional POS for TCG & Collectibles.
+            </p>
+            <p className="text-muted-foreground text-sm">
+              Product by Shogun Dot Dev (Pty) Ltd
             </p>
           </div>
         </div>
