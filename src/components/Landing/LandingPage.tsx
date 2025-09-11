@@ -92,10 +92,10 @@ export const LandingPage = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
               <div className="space-y-4">
-                <Badge className="bg-primary/10 text-primary border-primary/20">
+                {/* <Badge className="bg-primary/10 text-primary border-primary/20">
                   <Zap className="h-3 w-3 mr-1" />
                   Now with TCGPlayer Integration
-                </Badge>
+                </Badge> */}
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                   The Ultimate 
                   <span className="bg-gradient-primary bg-clip-text text-transparent"> POS</span>
