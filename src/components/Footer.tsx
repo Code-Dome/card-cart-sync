@@ -33,7 +33,7 @@ export function Footer() {
 
               {/* Quick Links (Right) */}
               <div className="space-y-4 md:col-span-1 md:col-start-3">
-                <h4 className="text-lg font-semibold text-brand-light">Quick Links</h4>
+                <h4 className="text-lg font-semibold text-brand-light sm:justify-center sm:text-center">Quick Links</h4>
                 <ul className="space-y-3">
                   {quickLinks.map((link, index) => (
                       <li key={index}>
@@ -63,7 +63,7 @@ export function Footer() {
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span>Built with</span>
                   <Heart className="w-3 h-3 text-purple-500"/>
-                  <span>for privacy</span>
+                  <span>for hobbiests</span>
 
                 </div>
               </div>
