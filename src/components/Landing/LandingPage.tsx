@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 import dashboardPreview from "@/assets/dashboard-preview.jpg";
+import { Footer } from "../Footer";
 
 const features = [
   {
@@ -319,22 +320,7 @@ export const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg"></div>
-              <span className="text-xl font-bold">CardShop POS</span>
-            </div>
-            <p className="text-muted-foreground text-sm">
-              © 2025 Super Hobby (Pty) Ltd. Professional POS for TCG & Collectibles.
-            </p>
-            <p className="text-muted-foreground text-sm">
-              Product by Shogun Dot Dev (Pty) Ltd
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
