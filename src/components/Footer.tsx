@@ -32,7 +32,7 @@ export function Footer() {
               <div className="hidden md:block"/>
 
               {/* Quick Links (Right) */}
-              <div className="space-y-4 md:col-span-1 md:col-start-3">
+              <div className="flex space-y-4 md:col-span-1 md:col-start-3 sm:text-center sm:items-center">
                 <h4 className="text-lg font-semibold text-brand-light">Quick Links</h4>
                 <ul className="space-y-3">
                   {quickLinks.map((link, index) => (
@@ -55,7 +55,7 @@ export function Footer() {
 
             {/* Bottom Bar */}
             <div className="border-t border-border/20 pt-8">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex flex-col md:flex-row justify-between items-center sm:text-center gap-4">
                 <p className="text-sm text-muted-foreground">
                   © 2025 Superhobby (Pty) Ltd | All rights
                   reserved.
