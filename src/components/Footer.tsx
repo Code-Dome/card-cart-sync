@@ -32,7 +32,7 @@ export function Footer() {
               <div className="hidden md:block"/>
 
               {/* Quick Links (Right) */}
-              <div className="flex space-y-4 md:col-span-1 md:col-start-3 sm:text-center sm:items-center">
+              <div className="sm:flex space-y-4 md:col-span-1 md:col-start-3 sm:text-center sm:items-center">
                 <h4 className="text-lg font-semibold text-brand-light">Quick Links</h4>
                 <ul className="space-y-3">
                   {quickLinks.map((link, index) => (
