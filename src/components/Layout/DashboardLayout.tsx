@@ -15,7 +15,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         <LandingPage />
       </SignedOut>
       
-      <SignedIn>
+      {/* <SignedIn>
         <SubscriptionGate>
           <div className="flex">
             <Sidebar />
@@ -35,7 +35,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </div>
           </div>
         </SubscriptionGate>
-      </SignedIn>
+      </SignedIn> */}
     </div>
   );
 };
