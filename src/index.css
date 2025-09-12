@@ -131,3 +131,51 @@
   * { @apply border-border; }
   body { @apply bg-background text-foreground; }
 }
+
+@layer components {
+  /* Force light tokens inside this wrapper even if <html class="dark"> */
+  .pricing-light {
+    --background: 0 0% 100%;
+    --foreground: 210 74% 17%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 74% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 74% 17%;
+
+    --primary: 210 74% 17%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 210 74% 24%;
+
+    --secondary: 210 28% 24%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 94%;
+    --muted-foreground: 210 12% 32%;
+
+    --accent: 48 100% 47%;
+    --accent-foreground: 0 0% 10%;
+
+    --success: 155 100% 33%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 48 100% 47%;
+    --warning-foreground: 0 0% 10%;
+
+    --destructive: 0 74% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 86%;
+    --input: 210 20% 86%;
+    --ring: 48 100% 47%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(210 74% 17%), hsl(210 74% 24%));
+    --gradient-accent: linear-gradient(135deg, hsl(48 100% 55%), hsl(48 100% 47%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 20% 97%));
+
+    --shadow-primary: 0 10px 30px -10px hsl(210 74% 17% / 0.18);
+    --shadow-glow: 0 0 40px hsl(48 100% 47% / 0.22);
+  }
+}
+
