@@ -14,7 +14,7 @@ import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { LandingPage } from "./components/Landing/LandingPage";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedRoute, RequirePro } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -27,14 +27,14 @@ const App = () => (
         <DashboardLayout>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <ProtectedRoute>
+            <Route element={<RequirePro redirectTo="/" /* allowEnterprise={false} */ />}>
               <Route path="/dashboard" element={<Dashboard />} />
-            </ProtectedRoute>
-            <Route path="/products" element={<Products />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/customers" element={<Customers />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/integrations" element={<Integrations />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/sales" element={<Sales />} />
+              <Route path="/customers" element={<Customers />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/integrations" element={<Integrations />} />
+            </Route>
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

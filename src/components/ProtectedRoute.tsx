@@ -1,36 +1,38 @@
+// src/routes/RequirePro.tsx
 import { useSubscriptionStatus } from "@/utils/subscription";
 import * as React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-type ProtectedRouteProps = {
-  children: React.ReactNode;
-  /** path that renders <LandingPage /> */
+
+type RequireProProps = {
+  /** where your <LandingPage /> lives */
   redirectTo?: string;
-  /** optional: what to show while loading */
+  /** let Enterprise through too (default true) */
+  allowEnterprise?: boolean;
+  /** what to render while Clerk loads */
   fallback?: React.ReactNode;
 };
 
-export function ProtectedRoute({
-  children,
+export function RequirePro({
   redirectTo = "/",
+  allowEnterprise = true,
   fallback = null,
-}: ProtectedRouteProps) {
+}: RequireProProps) {
   const { loading, isAuthenticated, data } = useSubscriptionStatus();
   const location = useLocation();
 
+  // 1) Don’t render anything sensitive until Clerk + User are loaded
   if (loading) return <>{fallback}</>;
 
-  // not signed in → send to landing
+  // 2) Not signed in → bounce to landing
   if (!isAuthenticated) {
     return <Navigate to={redirectTo} replace state={{ from: location }} />;
   }
 
-  // require active Pro (optionally Enterprise)
-  const allowed = data.isActive && data.plan === "pro_plus";
+  // 3) Require Pro (optionally Enterprise)
+  const isPro = data.isActive && data.plan === "pro_plus";
+  const isEnt = data.isActive && data.plan === "enterprise";
+  const allowed = isPro || (allowEnterprise && isEnt);
 
-  if (!allowed) {
-    return <Navigate to={redirectTo} replace state={{ from: location }} />;
-  }
-
-  return <>{children}</>;
+  return allowed ? <Outlet /> : <Navigate to={redirectTo} replace state={{ from: location }} />;
 }
