@@ -11,16 +11,16 @@ export const ClerkPricingTable = () => {
       {/* Clerk's native pricing table */}
       <div className="max-w-4xl mx-auto">
         <PricingTable
-          appearance={{
-            elements: {
-              // replace these with *your* inspected keys
-              buttonPrimary: "w-full rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90",
-              badge: "bg-indigo-600 text-white",
-              card: "rounded-2xl border border-border/50 p-6 backdrop-blur",
-              priceText: "text-4xl font-bold",
-              featureItem: "text-sm",
-            }
-          }}
+          // appearance={{
+          //   elements: {
+          //     // replace these with *your* inspected keys
+          //     buttonPrimary: "w-full rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90",
+          //     badge: "bg-indigo-600 text-white",
+          //     card: "rounded-2xl border border-border/50 p-6 backdrop-blur bg-primary",
+          //     priceText: "text-4xl font-bold",
+          //     featureItem: "text-sm",
+          //   }
+          // }}
         />
       </div>
 
