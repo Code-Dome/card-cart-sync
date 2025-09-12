@@ -23,7 +23,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <div className="flex-1">
               <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40">
                 <div className="flex items-center justify-between h-16 px-6">
-                  <h2 className="text-lg font-semibold">Welcome, {user.firstName || user.emailAddresses[0].emailAddress }</h2>
+                  <h2 className="text-lg font-semibold">Welcome, {user?.firstName || user?.emailAddresses[0]?.emailAddress }</h2>
                   <div className="flex items-center space-x-4">
                     <SubscriptionStatus />
                     <UserButton afterSignOutUrl="/landing" />
