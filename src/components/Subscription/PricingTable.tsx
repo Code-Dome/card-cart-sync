@@ -26,16 +26,15 @@ export const ClerkPricingTable = () => {
             },
             elements: {
               card:
-                "rounded-2xl border border-border/50 bg-gradient-to-b from-background/70 to-background/40 backdrop-blur-lg p-6 text-center shadow-primary",
+                "rounded-2xl border border-border/40 bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-md p-6 text-center shadow-primary",
               cardHeader: "mb-5",
               planTitle: "text-xl font-semibold tracking-tight text-foreground",
               priceText: "text-4xl font-extrabold text-primary",
               badge:
                 "bg-accent text-accent-foreground px-2 py-0.5 rounded-md mx-auto",
-              /* ✅ feature items with green checks */
+              /* ✅ readable features w/ green check */
               featureItem:
-                "text-sm text-muted-foreground flex items-center justify-center gap-2 before:content-['✓'] before:text-[hsl(var(--success))] before:font-bold before:leading-none",
-              /* yellow CTA to match brand */
+                "text-sm text-foreground flex items-center justify-center gap-2 before:content-['✓'] before:text-[hsl(var(--success))] before:font-bold before:leading-none",
               buttonPrimary:
                 "w-full rounded-xl bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold hover:opacity-90 transition mt-4 shadow-glow",
             },
@@ -54,6 +53,7 @@ export const ClerkPricingTable = () => {
             },
           }}
         />
+
       </div>
 
       {/* <div className="text-center space-y-4">
