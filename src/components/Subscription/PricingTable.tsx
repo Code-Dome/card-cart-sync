@@ -12,7 +12,7 @@ export const ClerkPricingTable = () => {
       <div className="max-w-4xl mx-auto">
         <PricingTable
           ctaPosition="top"
-          collapseFeatures={true}
+          collapseFeatures={false}
           appearance={{
             cssLayerName: "components",
             variables: {
@@ -22,21 +22,22 @@ export const ClerkPricingTable = () => {
               borderRadius: "1rem",
               fontSize: "0.95rem",
               fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-              shadow: "0 12px 40px rgba(0,0,0,.35)",
+              shadow: "0 12px 40px rgba(0,0,0,.15)", // softer in light mode
             },
             elements: {
+              /* Light card surface */
               card:
-                "rounded-2xl border border-border/40 bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-md p-6 text-center shadow-primary",
+                "rounded-2xl border border-border/60 bg-gradient-to-b from-white to-gray-50 p-6 text-center shadow-md",
               cardHeader: "mb-5",
-              planTitle: "text-xl font-semibold tracking-tight text-foreground",
+              planTitle: "text-xl font-semibold tracking-tight text-gray-900",
               priceText: "text-4xl font-extrabold text-primary",
               badge:
                 "bg-accent text-accent-foreground px-2 py-0.5 rounded-md mx-auto",
-              /* ✅ readable features w/ green check */
+              /* ✅ Features readable in light mode */
               featureItem:
-                "text-sm text-foreground flex items-center justify-center gap-2 before:content-['✓'] before:text-[hsl(var(--success))] before:font-bold before:leading-none",
+                "text-sm text-gray-700 flex items-center justify-center gap-2 before:content-['✓'] before:text-[hsl(var(--success))] before:font-bold before:leading-none",
               buttonPrimary:
-                "w-full rounded-xl bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold hover:opacity-90 transition mt-4 shadow-glow",
+                "w-full rounded-xl bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold hover:opacity-90 transition mt-4 shadow",
             },
           }}
           checkoutProps={{
@@ -44,7 +45,7 @@ export const ClerkPricingTable = () => {
               variables: {
                 colorPrimary: "hsl(var(--primary))",
                 borderRadius: "1rem",
-                shadow: "0 20px 50px rgba(0,0,0,.45)",
+                shadow: "0 12px 30px rgba(0,0,0,.2)",
               },
               elements: {
                 buttonPrimary:
@@ -53,7 +54,6 @@ export const ClerkPricingTable = () => {
             },
           }}
         />
-
       </div>
 
       {/* <div className="text-center space-y-4">
