@@ -15,7 +15,7 @@ import {
   RefreshCw
 } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
-import dashboardPreview from "@/assets/dashboard-preview.jpg";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 import { Footer } from "../Footer";
 
 const features = [

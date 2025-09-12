@@ -33,7 +33,7 @@ export function PricingGuard() {
     const isPro = data.isActive && data.plan === "pro_plus";
 
     return (isAuthenticated && isPro) 
-    ? <Navigate to={"/dashboard"} replace state={{ from: location }} /> 
+    ? <Navigate to={"/"} replace state={{ from: location }} /> 
     : <></>
 }
 
