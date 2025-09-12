@@ -10,6 +10,7 @@ import Integrations from "./pages/Integrations";
 import Sales from "./pages/Sales";
 import Customers from "./pages/Customers";
 import Analytics from "./pages/Analytics";
+import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/customers" element={<Customers />} />
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/integrations" element={<Integrations />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

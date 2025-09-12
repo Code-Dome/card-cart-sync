@@ -7,7 +7,8 @@ import {
   Settings, 
   Users, 
   BarChart3,
-  Link as LinkIcon
+  Link as LinkIcon,
+  CreditCard
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 
@@ -18,6 +19,7 @@ const navigation = [
   { name: "Customers", href: "/customers", icon: Users },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
   { name: "Integrations", href: "/integrations", icon: LinkIcon },
+  { name: "Pricing", href: "/pricing", icon: CreditCard },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
