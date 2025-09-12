@@ -27,7 +27,7 @@ const App = () => (
         <DashboardLayout>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route element={<RequirePro redirectTo="/" /* allowEnterprise={false} */ />}>
+            <Route element={<RequirePro redirectTo="/pricing" /* allowEnterprise={false} */ />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
               <Route path="/sales" element={<Sales />} />
@@ -36,7 +36,7 @@ const App = () => (
               <Route path="/integrations" element={<Integrations />} />
             </Route>
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/settings" element={<Settings />} />
+            {/* <Route path="/settings" element={<Settings />} /> */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

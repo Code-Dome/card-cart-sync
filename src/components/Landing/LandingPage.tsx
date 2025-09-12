@@ -312,9 +312,9 @@ export const LandingPage = () => {
                 Contact Sales
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               No credit card required • 14-day free trial • Cancel anytime
-            </p>
+            </p> */}
           </div>
         </div>
       </section>
