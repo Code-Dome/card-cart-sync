@@ -14,7 +14,7 @@ import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { LandingPage } from "./components/Landing/LandingPage";
-import { LandingGuard, RequirePro } from "./components/ProtectedRoute";
+import { LandingGuard, PricingGuard, RequirePro } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +37,9 @@ const App = () => (
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/integrations" element={<Integrations />} />
             </Route>
-            <Route path="/pricing" element={<Pricing />} />
+            <Route element={<PricingGuard />}>
+              <Route path="/pricing" element={<Pricing />} />
+            </Route>
             {/* <Route path="/settings" element={<Settings />} /> */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

@@ -79,7 +79,7 @@ const Pricing = () => {
             <div className="text-sm text-muted-foreground">Uptime</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-primary">1000+</div>
+            <div className="text-2xl font-bold text-primary">10,000+</div>
             <div className="text-sm text-muted-foreground">Products</div>
           </div>
           <div className="text-center">

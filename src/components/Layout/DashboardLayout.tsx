@@ -1,4 +1,4 @@
-import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/clerk-react";
 import { Sidebar } from "./Sidebar";
 import { LandingPage } from "../Landing/LandingPage";
 import { SubscriptionStatus } from "./SubscriptionStatus";
@@ -9,6 +9,8 @@ interface DashboardLayoutProps {
 }
 
 export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
+  const { user } = useUser()
+
   return (
     <div className="min-h-screen bg-background">
       <SignedOut>
@@ -21,7 +23,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <div className="flex-1">
               <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40">
                 <div className="flex items-center justify-between h-16 px-6">
-                  <h2 className="text-lg font-semibold">CardShop POS Dashboard</h2>
+                  <h2 className="text-lg font-semibold">Welcome, {user.firstName || user.emailAddresses[0].emailAddress }</h2>
                   <div className="flex items-center space-x-4">
                     <SubscriptionStatus />
                     <UserButton afterSignOutUrl="/landing" />
