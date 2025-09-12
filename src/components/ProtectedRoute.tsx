@@ -34,8 +34,7 @@ export function PricingGuard() {
 
     return (isAuthenticated && isPro) 
     ? <Navigate to={"/"} replace state={{ from: location }} /> 
-    : <></>
-}
+    : <Outlet />
 
 export function RequirePro({
     redirectTo = "/",
