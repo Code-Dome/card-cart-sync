@@ -18,13 +18,12 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       </SignedOut>
       
       <SignedIn>
-        {/* <SubscriptionGate> */}
           <div className="flex">
             <Sidebar />
             <div className="flex-1">
               <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40">
                 <div className="flex items-center justify-between h-16 px-6">
-                  <h2 className="text-lg font-semibold">CollectorPOS Dashboard</h2>
+                  <h2 className="text-lg font-semibold">CardShop POS Dashboard</h2>
                   <div className="flex items-center space-x-4">
                     <SubscriptionStatus />
                     <UserButton afterSignOutUrl="/" />
@@ -36,7 +35,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </main>
             </div>
           </div>
-        {/* </SubscriptionGate> */}
       </SignedIn>
     <Footer />
     </div>

@@ -13,6 +13,8 @@ import Analytics from "./pages/Analytics";
 import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import { LandingPage } from "./components/Landing/LandingPage";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +26,10 @@ const App = () => (
       <BrowserRouter>
         <DashboardLayout>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<LandingPage />} />
+            <ProtectedRoute>
+              <Route path="/dashboard" element={<Dashboard />} />
+            </ProtectedRoute>
             <Route path="/products" element={<Products />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/customers" element={<Customers />} />
