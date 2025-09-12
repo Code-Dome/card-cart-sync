@@ -33,8 +33,8 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </main>
             </div>
           </div>
+        <Footer />
       </SignedIn>
-    <Footer />
     </div>
   );
 };
