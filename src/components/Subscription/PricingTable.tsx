@@ -11,54 +11,58 @@ export const ClerkPricingTable = () => {
       {/* Clerk's native pricing table */}
       <div className="max-w-4xl mx-auto">
         <div className="pricing-light text-center [&_*]:!text-center [&_*]:mx-auto">
-  <PricingTable
-    ctaPosition="top"
-    collapseFeatures={false}
-    appearance={{
-      cssLayerName: "components",
-      variables: {
-        colorPrimary: "hsl(var(--primary))",
-        colorText: "hsl(var(--foreground))",
-        colorBackground: "transparent",
-        borderRadius: "1rem",
-        fontSize: "0.95rem",
-        fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-        shadow: "0 12px 40px rgba(0,0,0,.15)",
-      },
-      elements: {
-        // bright surface + borders; force centering at card-level too
-        card:
-          "!text-center rounded-2xl border border-border/60 bg-gradient-to-b from-white to-gray-50 p-6 shadow-md",
+          <PricingTable
+            ctaPosition="top"
+            collapseFeatures={false}
+            appearance={{
+              cssLayerName: "components",
+              variables: {
+                // 🔶 Use raw HEX so the widget can’t misinterpret HSL vars
+                colorPrimary: "#F2C200",            // brand yellow (CTA/focus)
+                colorText: "#0B2B4A",             // brand navy
+                colorBackground: "#FFFFFF",
+                borderRadius: "16px",
+                fontSize: "0.95rem",
+                fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
+                shadow: "0 12px 40px rgba(11,43,74,.12)", // navy-tinted shadow
+              },
+              // Keys must match the widget’s safe classes
+              elements: {
+                // bright card
+                card:
+                  "rounded-2xl border border-border/60 bg-gradient-to-b from-white to-gray-50 p-6 shadow-md",
 
-        cardHeader: "mb-5",
-        planTitle: "!text-center text-xl font-semibold tracking-tight text-gray-900",
-        priceText: "!text-center text-4xl font-extrabold text-[hsl(var(--primary))]",
-        badge: "bg-accent text-accent-foreground px-2 py-0.5 rounded-md",
+                cardHeader: "mb-5",
+                planTitle: "text-xl font-semibold tracking-tight text-[#0B2B4A]",
+                priceText: "text-4xl font-extrabold text-[#0B2B4A]",
 
-        // ✅ readable features + green check icon
-        featureItem:
-          "!text-center text-sm text-gray-700 flex items-center justify-center gap-2 before:content-['✓'] before:text-[hsl(var(--success))] before:font-bold before:leading-none",
+                // Yellow badge to match CTA
+                badge: "bg-[#F2C200] text-black px-2 py-0.5 rounded-md",
 
-        // Yellow CTA that pops against the light card
-        buttonPrimary:
-          "w-full rounded-xl bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-semibold hover:opacity-90 transition mt-4 shadow",
-      },
-    }}
-    checkoutProps={{
-      appearance: {
-        variables: {
-          colorPrimary: "hsl(var(--primary))",
-          borderRadius: "1rem",
-          shadow: "0 12px 30px rgba(0,0,0,.2)",
-        },
-        elements: {
-          buttonPrimary:
-            "w-full rounded-xl bg-primary text-primary-foreground font-semibold hover:opacity-90 mt-4",
-        },
-      },
-    }}
-  />
-</div>
+                // ✅ readable features + green checks
+                featureItem:
+                  "text-sm text-[#0B2B4A] flex items-center justify-center gap-2 before:content-['✓'] before:text-[#00A661] before:font-bold before:leading-none",
+
+                // Solid yellow CTA (no blue fallback)
+                buttonPrimary:
+                  "w-full rounded-xl bg-[#F2C200] text-black font-semibold hover:brightness-95 transition mt-4 shadow",
+              },
+            }}
+            checkoutProps={{
+              appearance: {
+                variables: {
+                  colorPrimary: "#F2C200",
+                  borderRadius: "16px",
+                  shadow: "0 12px 30px rgba(11,43,74,.18)",
+                },
+                elements: {
+                  buttonPrimary:
+                    "w-full rounded-xl bg-[#0B2B4A] text-white font-semibold hover:opacity-90 mt-4", // navy confirm button
+                },
+              },
+            }}
+          />
+        </div>
       </div>
 
       {/* <div className="text-center space-y-4">
