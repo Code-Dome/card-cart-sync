@@ -14,7 +14,7 @@ export const ClerkPricingTable = () => {
           ctaPosition="top"
           collapseFeatures={false}
           appearance={{
-            baseTheme: [dark],
+            // baseTheme: [dark],
             cssLayerName: "components", // your Tailwind layer
             variables: {
               colorPrimary: "hsl(var(--primary))",
