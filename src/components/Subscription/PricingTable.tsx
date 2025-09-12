@@ -10,20 +10,29 @@ export const ClerkPricingTable = () => {
 
       {/* Clerk's native pricing table */}
       <div className="max-w-4xl mx-auto">
-        <PricingTable 
+        <PricingTable
           appearance={{
-            elements: {
-              pricingTable: "rounded-lg shadow-lg",
-              pricingTableCard: "bg-gradient-card border-border/50 rounded-lg p-6",
-              pricingTableHeader: "text-primarytext-primary text-center mb-6",
-              pricingTableTitle: "text-primary text-xl font-semibold mb-2",
-              pricingTableDescription: "text-primary mb-4",
-              pricingTablePrice: "text-primary text-4xl font-bold mb-2",
-              pricingTableFeatureList: "text-primary space-y-3 mb-6",
-              pricingTableFeatureItem: "text-primary flex items-center space-x-3 text-sm",
-              pricingTableButton: "text-primary w-full bg-gradient-primary hover:shadow-glow",
-              pricingTablePopularBadge: "bg-gradient-primary"
-            }
+            // optional: ensure Clerk’s CSS plays nicely with Tailwind layers
+            cssLayerName: 'components', // adjust if you use a custom @layer setup
+            // global theming knobs:
+            variables: {
+              colorPrimary: 'hsl(var(--primary))',
+              colorText: 'hsl(var(--foreground))',
+              colorBackground: 'transparent',
+              borderRadius: '1rem',
+              fontSize: '1rem',
+              fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+              shadow: '0 10px 25px rgba(0,0,0,.25)',
+            },
+          }}
+          checkoutProps={{
+            // style the checkout drawer too
+            appearance: {
+              variables: {
+                colorPrimary: 'hsl(var(--primary))',
+                borderRadius: '1rem',
+              },
+            },
           }}
         />
       </div>
