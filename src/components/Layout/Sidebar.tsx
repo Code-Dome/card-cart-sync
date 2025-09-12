@@ -14,12 +14,12 @@ import { useLocation, Link } from "react-router-dom";
 import { useSubscriptionStatus } from "@/utils/subscription";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true },
-  { name: "Products", href: "/products", icon: Package, requiresPlan: true },
-  { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true },
-  { name: "Customers", href: "/customers", icon: Users, requiresPlan: true },
-  { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true },
-  { name: "Integrations", href: "/integrations", icon: LinkIcon, requiresPlan: true },
+  { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true, showIfPro: true },
+  { name: "Products", href: "/products", icon: Package, requiresPlan: true, showIfPro: true },
+  { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true, showIfPro: true },
+  { name: "Customers", href: "/customers", icon: Users, requiresPlan: true, showIfPro: true },
+  { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true, showIfPro: true },
+  { name: "Integrations", href: "/integrations", icon: LinkIcon, requiresPlan: true, showIfPro: true },
   { name: "Pricing", href: "/pricing", icon: CreditCard, requiresPlan: false, showIfPro: false },
   // { name: "Settings", href: "/settings", icon: Settings, requiresPlan: false },
 ];
@@ -40,8 +40,8 @@ export const Sidebar = () => {
       <nav className="px-4 space-y-2">
         {navigation.map((item) => {
           if (data.plan !== "pro_plus" && item.requiresPlan) return;
-          if (data.plan === "pro_plus" && !item?.showIfPro) return;
-          
+          if (data.plan === "pro_plus" && !item.showIfPro) return;
+
           return (
           <Link key={item.name} to={item.href}>
             <Button
