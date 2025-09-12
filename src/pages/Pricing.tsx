@@ -4,22 +4,22 @@ import { ClerkPricingTable } from "@/components/Subscription/PricingTable";
 const Pricing = () => {
   return (
     <div className="space-y-8">
-      <div>
+      {/* <div>
         <h1 className="text-3xl font-bold">Pricing</h1>
         <p className="text-muted-foreground">Choose the perfect plan for your store</p>
-      </div>
+      </div> */}
 
       {/* Header */}
       <div className="text-center space-y-4">
         <div className="flex items-center justify-center space-x-2 mb-4">
           <Badge variant="outline" className="text-sm">
-            Professional POS Solution
+            Professional POS Solution for Hobbyist stores
           </Badge>
         </div>
         
         <h2 className="text-4xl font-bold">
           Unlock the Full Power of 
-          <span className="bg-gradient-primary bg-clip-text text-transparent"> CollectorPOS</span>
+          <span className="bg-gradient-primary bg-clip-text text-transparent"> CardShop POS</span>
         </h2>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Get instant access to professional POS features, Shopify integration, and live TCGPlayer pricing
