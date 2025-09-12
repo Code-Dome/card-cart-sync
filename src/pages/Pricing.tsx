@@ -75,9 +75,6 @@ const Pricing = () => {
       {/* Pricing Table */}
       <ClerkPricingTable />
 
-      {/* Demo Activation Button */}
-      <TestSubscriptionButton />
-
       {/* Trust Indicators */}
       <div className="text-center space-y-4 pt-8">
         <div className="flex items-center justify-center space-x-8">

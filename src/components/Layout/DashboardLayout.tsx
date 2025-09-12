@@ -4,6 +4,7 @@ import { LandingPage } from "../Landing/LandingPage";
 import { SubscriptionGate } from "../Subscription/SubscriptionGate";
 import { SubscriptionStatus } from "./SubscriptionStatus";
 import { useSubscriptionStatus } from "@/utils/subscription";
+import { Footer } from "../Footer";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -37,6 +38,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </div>
         {/* </SubscriptionGate> */}
       </SignedIn>
+    <Footer />
     </div>
   );
 };

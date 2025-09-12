@@ -15,13 +15,13 @@ export const ClerkPricingTable = () => {
             elements: {
               pricingTable: "rounded-lg shadow-lg",
               pricingTableCard: "bg-gradient-card border-border/50 rounded-lg p-6",
-              pricingTableHeader: "text-center mb-6",
-              pricingTableTitle: "text-xl font-semibold mb-2",
-              pricingTableDescription: "text-foreground mb-4",
-              pricingTablePrice: "text-4xl font-bold mb-2",
-              pricingTableFeatureList: "space-y-3 mb-6",
-              pricingTableFeatureItem: "flex items-center space-x-3 text-sm",
-              pricingTableButton: "w-full bg-gradient-primary hover:shadow-glow",
+              pricingTableHeader: "text-primarytext-primary text-center mb-6",
+              pricingTableTitle: "text-primary text-xl font-semibold mb-2",
+              pricingTableDescription: "text-primary mb-4",
+              pricingTablePrice: "text-primary text-4xl font-bold mb-2",
+              pricingTableFeatureList: "text-primary space-y-3 mb-6",
+              pricingTableFeatureItem: "text-primary flex items-center space-x-3 text-sm",
+              pricingTableButton: "text-primary w-full bg-gradient-primary hover:shadow-glow",
               pricingTablePopularBadge: "bg-gradient-primary"
             }
           }}
