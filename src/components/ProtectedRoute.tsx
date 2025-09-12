@@ -14,12 +14,16 @@ type RequireProProps = {
 };
 
 export function LandingGuard() {
-    const { data } = useSubscriptionStatus();
+    const { isAuthenticated, data } = useSubscriptionStatus();
     const location = useLocation();
 
     const isPro = data.isActive && data.plan === "pro_plus";
 
-    return isPro ?? <Navigate to={"/dashboard"} replace state={{ from: location }} />;
+    return (isAuthenticated && isPro) 
+    ? <Navigate to={"/dashboard"} replace state={{ from: location }} /> 
+    : (isAuthenticated && !isPro)
+    ? <Navigate to={"/pricing"} replace state={{ from: location }} />
+    :<></>;
 }
 
 export function RequirePro({
