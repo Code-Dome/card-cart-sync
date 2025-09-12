@@ -5,7 +5,7 @@ export const ClerkPricingTable = () => {
     <div className="space-y-8">
       <div className="text-center space-y-2">
         <h2 className="text-3xl font-bold">Choose Your Plan</h2>
-        <p className="text-muted-foreground">Start with a 14-day free trial. No credit card required.</p>
+        {/* <p className="text-muted-foreground">Start with a 7-day free trial. No credit card required.</p> */}
       </div>
 
       {/* Clerk's native pricing table */}
@@ -17,7 +17,7 @@ export const ClerkPricingTable = () => {
               pricingTableCard: "bg-gradient-card border-border/50 rounded-lg p-6",
               pricingTableHeader: "text-center mb-6",
               pricingTableTitle: "text-xl font-semibold mb-2",
-              pricingTableDescription: "text-muted-foreground mb-4",
+              pricingTableDescription: "text-foreground mb-4",
               pricingTablePrice: "text-4xl font-bold mb-2",
               pricingTableFeatureList: "space-y-3 mb-6",
               pricingTableFeatureItem: "flex items-center space-x-3 text-sm",
@@ -28,8 +28,8 @@ export const ClerkPricingTable = () => {
         />
       </div>
 
-      <div className="text-center space-y-4">
-        <p className="text-sm text-muted-foreground">
+      {/* <div className="text-center space-y-4">
+        <p className="text-sm text-foreground">
           All plans include SSL security, data backups, and mobile access
         </p>
         <div className="flex items-center justify-center space-x-6 text-xs text-muted-foreground">
@@ -37,7 +37,7 @@ export const ClerkPricingTable = () => {
           <span>✓ GDPR Compliant</span>
           <span>✓ 24/7 Support</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
