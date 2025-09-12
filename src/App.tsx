@@ -14,7 +14,7 @@ import Pricing from "./pages/Pricing";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import { LandingPage } from "./components/Landing/LandingPage";
-import { ProtectedRoute, RequirePro } from "./components/ProtectedRoute";
+import { RequirePro } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -26,9 +26,9 @@ const App = () => (
       <BrowserRouter>
         <DashboardLayout>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/landing" element={<LandingPage />} />
             <Route element={<RequirePro redirectTo="/pricing" /* allowEnterprise={false} */ />}>
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
               <Route path="/sales" element={<Sales />} />
               <Route path="/customers" element={<Customers />} />

@@ -24,7 +24,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <h2 className="text-lg font-semibold">CardShop POS Dashboard</h2>
                   <div className="flex items-center space-x-4">
                     <SubscriptionStatus />
-                    <UserButton afterSignOutUrl="/" />
+                    <UserButton afterSignOutUrl="/landing" />
                   </div>
                 </div>
               </header>

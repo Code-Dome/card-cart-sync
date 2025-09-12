@@ -14,7 +14,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useSubscriptionStatus } from "@/utils/subscription";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, requiresPlan: true },
+  { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true },
   { name: "Products", href: "/products", icon: Package, requiresPlan: true },
   { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true },
   { name: "Customers", href: "/customers", icon: Users, requiresPlan: true },
