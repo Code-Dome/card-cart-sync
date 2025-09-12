@@ -11,6 +11,7 @@ import {
   CreditCard
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
+import { useSubscriptionStatus } from "@/utils/subscription";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
@@ -25,6 +26,7 @@ const navigation = [
 
 export const Sidebar = () => {
   const location = useLocation();
+  const { data } = useSubscriptionStatus()
 
   return (
     <div className="w-64 h-screen bg-card border-r border-border sticky top-0">
@@ -36,7 +38,9 @@ export const Sidebar = () => {
       </div>
       
       <nav className="px-4 space-y-2">
-        {navigation.map((item) => (
+        {navigation.map((item) => {
+          if (data.plan !== "pro" && item.name !== "Dashboard") return;
+          return (
           <Link key={item.name} to={item.href}>
             <Button
               variant={location.pathname === item.href ? "secondary" : "ghost"}
@@ -49,7 +53,8 @@ export const Sidebar = () => {
               {item.name}
             </Button>
           </Link>
-        ))}
+        )
+        })}
       </nav>
     </div>
   );
