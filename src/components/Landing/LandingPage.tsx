@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import heroBackground from "@/assets/hero-bg.jpg";
 import dashboardPreview from "@/assets/dashboard-preview.jpg";
-import { Footer } from "../Footer";
 
 const features = [
   {
@@ -318,9 +317,6 @@ export const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 };

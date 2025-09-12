@@ -1,8 +1,5 @@
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle } from "lucide-react";
 import { ClerkPricingTable } from "@/components/Subscription/PricingTable";
-import { TestSubscriptionButton } from "@/components/Subscription/TestSubscriptionButton";
 
 const Pricing = () => {
   return (
@@ -29,8 +26,7 @@ const Pricing = () => {
         </p>
       </div>
 
-      {/* Feature Benefits */}
-      <Card className="p-8 bg-gradient-card border-border/50">
+      {/* <Card className="p-8 bg-gradient-card border-border/50">
         <h3 className="text-xl font-semibold mb-6 text-center">What you'll get with CollectorPOS Pro:</h3>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -70,7 +66,7 @@ const Pricing = () => {
             </div>
           </div>
         </div>
-      </Card>
+      </Card> */}
 
       {/* Pricing Table */}
       <ClerkPricingTable />
@@ -83,8 +79,8 @@ const Pricing = () => {
             <div className="text-sm text-muted-foreground">Uptime</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-primary">500+</div>
-            <div className="text-sm text-muted-foreground">Happy Stores</div>
+            <div className="text-2xl font-bold text-primary">1000+</div>
+            <div className="text-sm text-muted-foreground">Products</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-primary">24/7</div>
@@ -92,7 +88,7 @@ const Pricing = () => {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          Join hundreds of TCG store owners already using CollectorPOS
+          Sign up today and join TCG store owners who already use CardShop POS
         </p>
       </div>
     </div>

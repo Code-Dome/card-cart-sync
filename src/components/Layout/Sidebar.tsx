@@ -14,14 +14,14 @@ import { useLocation, Link } from "react-router-dom";
 import { useSubscriptionStatus } from "@/utils/subscription";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard, requiresPlan: true },
   { name: "Products", href: "/products", icon: Package, requiresPlan: true },
   { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true },
   { name: "Customers", href: "/customers", icon: Users, requiresPlan: true },
   { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true },
   { name: "Integrations", href: "/integrations", icon: LinkIcon, requiresPlan: true },
   { name: "Pricing", href: "/pricing", icon: CreditCard, requiresPlan: false },
-  { name: "Settings", href: "/settings", icon: Settings, requiresPlan: false },
+  // { name: "Settings", href: "/settings", icon: Settings, requiresPlan: false },
 ];
 
 export const Sidebar = () => {

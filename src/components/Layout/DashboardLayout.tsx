@@ -1,9 +1,7 @@
 import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
 import { Sidebar } from "./Sidebar";
 import { LandingPage } from "../Landing/LandingPage";
-import { SubscriptionGate } from "../Subscription/SubscriptionGate";
 import { SubscriptionStatus } from "./SubscriptionStatus";
-import { useSubscriptionStatus } from "@/utils/subscription";
 import { Footer } from "../Footer";
 
 interface DashboardLayoutProps {
