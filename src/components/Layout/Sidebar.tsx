@@ -39,7 +39,8 @@ export const Sidebar = () => {
       
       <nav className="px-4 space-y-2">
         {navigation.map((item) => {
-          if (data.plan !== "pro" && item.requiresPlan) return;
+          if (data.plan !== "pro_plus" && item.requiresPlan) return;
+
           return (
           <Link key={item.name} to={item.href}>
             <Button
