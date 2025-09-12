@@ -11,16 +11,29 @@ export const ClerkPricingTable = () => {
       {/* Clerk's native pricing table */}
       <div className="max-w-4xl mx-auto">
         <PricingTable
-          // appearance={{
-          //   elements: {
-          //     // replace these with *your* inspected keys
-          //     buttonPrimary: "w-full rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90",
-          //     badge: "bg-indigo-600 text-white",
-          //     card: "rounded-2xl border border-border/50 p-6 backdrop-blur bg-primary",
-          //     priceText: "text-4xl font-bold",
-          //     featureItem: "text-sm",
-          //   }
-          // }}
+          appearance={{
+            // optional: ensure Clerk’s CSS plays nicely with Tailwind layers
+            cssLayerName: 'components', // adjust if you use a custom @layer setup
+            // global theming knobs:
+            variables: {
+              colorPrimary: 'hsl(var(--primary))',
+              colorText: 'hsl(var(--foreground))',
+              colorBackground: 'transparent',
+              borderRadius: '1rem',
+              fontSize: '1rem',
+              fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif',
+              shadow: '0 10px 25px rgba(0,0,0,.25)',
+            },
+          }}
+          checkoutProps={{
+            // style the checkout drawer too
+            appearance: {
+              variables: {
+                colorPrimary: 'hsl(var(--primary))',
+                borderRadius: '1rem',
+              },
+            },
+          }}
         />
       </div>
 
