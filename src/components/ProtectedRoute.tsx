@@ -5,34 +5,43 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 
 type RequireProProps = {
-  /** where your <LandingPage /> lives */
-  redirectTo?: string;
-  /** let Enterprise through too (default true) */
-  allowEnterprise?: boolean;
-  /** what to render while Clerk loads */
-  fallback?: React.ReactNode;
+    /** where your <LandingPage /> lives */
+    redirectTo?: string;
+    /** let Enterprise through too (default true) */
+    allowEnterprise?: boolean;
+    /** what to render while Clerk loads */
+    fallback?: React.ReactNode;
 };
 
+export function LandingGuard() {
+    const { data } = useSubscriptionStatus();
+    const location = useLocation();
+
+    const isPro = data.isActive && data.plan === "pro_plus";
+
+    return isPro ?? <Navigate to={"/dashboard"} replace state={{ from: location }} />;
+}
+
 export function RequirePro({
-  redirectTo = "/",
-  allowEnterprise = true,
-  fallback = null,
+    redirectTo = "/",
+    allowEnterprise = true,
+    fallback = null,
 }: RequireProProps) {
-  const { loading, isAuthenticated, data } = useSubscriptionStatus();
-  const location = useLocation();
+    const { loading, isAuthenticated, data } = useSubscriptionStatus();
+    const location = useLocation();
 
-  // 1) Don’t render anything sensitive until Clerk + User are loaded
-  if (loading) return <>{fallback}</>;
+    // 1) Don’t render anything sensitive until Clerk + User are loaded
+    if (loading) return <>{fallback}</>;
 
-  // 2) Not signed in → bounce to landing
-  if (!isAuthenticated) {
-    return <Navigate to={redirectTo} replace state={{ from: location }} />;
-  }
+    // 2) Not signed in → bounce to landing
+    if (!isAuthenticated) {
+        return <Navigate to={redirectTo} replace state={{ from: location }} />;
+    }
 
-  // 3) Require Pro (optionally Enterprise)
-  const isPro = data.isActive && data.plan === "pro_plus";
-  const isEnt = data.isActive && data.plan === "enterprise";
-  const allowed = isPro || (allowEnterprise && isEnt);
+    // 3) Require Pro (optionally Enterprise)
+    const isPro = data.isActive && data.plan === "pro_plus";
+    const isEnt = data.isActive && data.plan === "enterprise";
+    const allowed = isPro || (allowEnterprise && isEnt);
 
-  return allowed ? <Outlet /> : <Navigate to={redirectTo} replace state={{ from: location }} />;
+    return allowed ? <Outlet /> : <Navigate to={redirectTo} replace state={{ from: location }} />;
 }
