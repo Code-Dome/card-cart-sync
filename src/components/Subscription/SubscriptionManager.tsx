@@ -1,4 +1,5 @@
-import { useUser } from "@clerk/clerk-react";
+import React from "react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,30 +13,21 @@ import {
   ExternalLink
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { getSubscriptionData, getPlanDisplayName, isOnTrial, getTrialDaysRemaining } from "@/utils/subscription";
 
 export const SubscriptionManager = () => {
+  const { has } = useAuth();
   const { user } = useUser();
   const { toast } = useToast();
 
-  // Get subscription data from user metadata
-  const subscriptionData = getSubscriptionData(user);
-  const isUserOnTrial = isOnTrial(user);
-  const trialDaysLeft = getTrialDaysRemaining(user);
-
-  // Fallback to default subscription data if none exists
-  const subscription = subscriptionData || {
-    status: 'active' as const,
-    plan: 'pro' as const,
-    planId: 'cplan_32VagVMOJP8AcLUo7JN2tWzkdR9'
-  };
+  // Check if user has the pro plan using Clerk's has() method
+  const hasProPlan = has && has({ plan: "cplan_32VagVMOJP8AcLUo7JN2tWzkdR9" });
 
   // Mock data for display
   const displayData = {
-    amount: subscription.plan === 'pro' ? 49 : subscription.plan === 'enterprise' ? 99 : 29,
+    amount: 49,
     currency: 'USD',
-    nextBilling: subscription.currentPeriodEnd ? new Date(subscription.currentPeriodEnd).toLocaleDateString() : '2024-02-15',
-    cancelAtPeriodEnd: subscription.cancelAtPeriodEnd || false
+    nextBilling: '2024-02-15',
+    cancelAtPeriodEnd: false
   };
 
   const handleManageBilling = () => {
@@ -44,8 +36,8 @@ export const SubscriptionManager = () => {
       description: "You'll be taken to manage your subscription.",
     });
     
-    // In real implementation, redirect to Clerk's customer portal
-    // window.open(clerkBillingPortalUrl, '_blank');
+    // In a real implementation, this would open Clerk's billing portal
+    // or redirect to a Clerk-managed billing page
   };
 
   const handleCancelSubscription = () => {
@@ -63,26 +55,11 @@ export const SubscriptionManager = () => {
     });
   };
 
-  const getStatusBadge = (status: string) => {
-    if (isUserOnTrial) {
-      return (
-        <Badge className="bg-warning/10 text-warning">
-          <AlertTriangle className="h-3 w-3 mr-1" />
-          Trial ({trialDaysLeft} days left)
-        </Badge>
-      );
+  const getStatusBadge = () => {
+    if (hasProPlan) {
+      return <Badge className="bg-success/10 text-success"><CheckCircle className="h-3 w-3 mr-1" />Active</Badge>;
     }
-    
-    switch (status) {
-      case 'active':
-        return <Badge className="bg-success/10 text-success"><CheckCircle className="h-3 w-3 mr-1" />Active</Badge>;
-      case 'trial':
-        return <Badge className="bg-warning/10 text-warning"><AlertTriangle className="h-3 w-3 mr-1" />Trial</Badge>;
-      case 'cancelled':
-        return <Badge variant="destructive">Cancelled</Badge>;
-      default:
-        return <Badge variant="secondary">Unknown</Badge>;
-    }
+    return <Badge variant="secondary">No Active Plan</Badge>;
   };
 
   return (
@@ -100,11 +77,11 @@ export const SubscriptionManager = () => {
               <CreditCard className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <h4 className="text-xl font-semibold">CollectorPOS {getPlanDisplayName(subscription.plan)}</h4>
+              <h4 className="text-xl font-semibold">CollectorPOS {hasProPlan ? 'Professional' : 'Free'}</h4>
               <p className="text-muted-foreground">Your current subscription plan</p>
             </div>
           </div>
-          {getStatusBadge(subscription.status)}
+          {getStatusBadge()}
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-6">

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button.tsx";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
-    const version = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : 'dev';
+    const version = 'v1.0.0';
 
     const quickLinks = [
         { name: "Privacy Policy", href: "/privacy", icon: null },

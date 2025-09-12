@@ -1,20 +1,19 @@
-import { useUser } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/clerk-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, CreditCard, Lock, Zap } from "lucide-react";
-import { PricingTable } from "./PricingTable";
+import { CheckCircle, Lock } from "lucide-react";
+import { ClerkPricingTable } from "./PricingTable";
 import { TestSubscriptionButton } from "./TestSubscriptionButton";
-import { hasActiveSubscription } from "@/utils/subscription";
 
 interface SubscriptionGateProps {
   children: React.ReactNode;
 }
 
 export const SubscriptionGate = ({ children }: SubscriptionGateProps) => {
-  const { user } = useUser();
+  const { has } = useAuth();
 
-  // Check if user has an active subscription using utility function
-  const userHasActiveSubscription = hasActiveSubscription(user);
+  // Check if user has an active subscription using Clerk's has() method
+  const userHasActiveSubscription = has && has({ plan: "cplan_32VagVMOJP8AcLUo7JN2tWzkdR9" });
 
   if (!userHasActiveSubscription) {
     return (
@@ -89,7 +88,7 @@ export const SubscriptionGate = ({ children }: SubscriptionGateProps) => {
           </Card>
 
           {/* Pricing Table */}
-          <PricingTable />
+          <ClerkPricingTable />
 
           {/* Demo Activation Button */}
           <TestSubscriptionButton />

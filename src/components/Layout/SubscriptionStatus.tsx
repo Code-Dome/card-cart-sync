@@ -1,46 +1,26 @@
-import { useUser } from "@clerk/clerk-react";
+import { useAuth } from "@clerk/clerk-react";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, AlertTriangle } from "lucide-react";
-import { getSubscriptionData, getPlanDisplayName, isOnTrial, getTrialDaysRemaining } from "@/utils/subscription";
+import { CheckCircle, AlertTriangle } from "lucide-react";
 
 export const SubscriptionStatus = () => {
-  const { user } = useUser();
+  const { has } = useAuth();
   
-  const subscriptionData = getSubscriptionData(user);
-  const userIsOnTrial = isOnTrial(user);
-  const trialDaysLeft = getTrialDaysRemaining(user);
+  // Check if user has the pro plan using Clerk's has() method
+  const hasProPlan = has && has({ plan: "cplan_32VagVMOJP8AcLUo7JN2tWzkdR9" });
 
-  if (!subscriptionData) {
-    return (
-      <Badge variant="secondary">
-        <AlertTriangle className="h-3 w-3 mr-1" />
-        No Plan
-      </Badge>
-    );
-  }
-
-  if (userIsOnTrial) {
-    return (
-      <Badge className="bg-warning/10 text-warning border-warning/20">
-        <Clock className="h-3 w-3 mr-1" />
-        Trial ({trialDaysLeft}d left)
-      </Badge>
-    );
-  }
-
-  if (subscriptionData.status === 'active') {
+  if (hasProPlan) {
     return (
       <Badge className="bg-success/10 text-success border-success/20">
         <CheckCircle className="h-3 w-3 mr-1" />
-        {getPlanDisplayName(subscriptionData.plan)} Active
+        Pro Active
       </Badge>
     );
   }
 
   return (
-    <Badge variant="destructive">
+    <Badge variant="secondary">
       <AlertTriangle className="h-3 w-3 mr-1" />
-      {subscriptionData.status}
+      No Plan
     </Badge>
   );
 };
