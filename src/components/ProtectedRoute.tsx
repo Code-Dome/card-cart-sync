@@ -20,7 +20,7 @@ export function LandingGuard() {
     const isPro = data.isActive && data.plan === "pro_plus";
 
     return (isAuthenticated && isPro) 
-    ? <Navigate to={"/dashboard"} replace state={{ from: location }} /> 
+    ? <Navigate to={"/"} replace state={{ from: location }} /> 
     : (isAuthenticated && !isPro)
     ? <Navigate to={"/pricing"} replace state={{ from: location }} />
     :<></>;

@@ -20,7 +20,7 @@ const navigation = [
   { name: "Customers", href: "/customers", icon: Users, requiresPlan: true },
   { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true },
   { name: "Integrations", href: "/integrations", icon: LinkIcon, requiresPlan: true },
-  { name: "Pricing", href: "/pricing", icon: CreditCard, requiresPlan: false },
+  { name: "Pricing", href: "/pricing", icon: CreditCard, requiresPlan: false, showIfPro: false },
   // { name: "Settings", href: "/settings", icon: Settings, requiresPlan: false },
 ];
 
@@ -40,7 +40,8 @@ export const Sidebar = () => {
       <nav className="px-4 space-y-2">
         {navigation.map((item) => {
           if (data.plan !== "pro_plus" && item.requiresPlan) return;
-
+          if (data.plan === "pro_plus" && !item?.showIfPro) return;
+          
           return (
           <Link key={item.name} to={item.href}>
             <Button
