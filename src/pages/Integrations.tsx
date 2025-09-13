@@ -12,7 +12,9 @@ import {
   CheckCircle, 
   AlertCircle,
   ExternalLink,
-  Zap
+  Zap,
+  DollarSign,
+  TrendingUp
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -21,6 +23,7 @@ const Integrations = () => {
   const [livePricingEnabled, setLivePricingEnabled] = useState(false);
   const [conversionRate, setConversionRate] = useState("18.50");
   const [useFixedRate, setUseFixedRate] = useState(true);
+  const [isCardKingdomConnected, setIsCardKingdomConnected] = useState(false);
   const { toast } = useToast();
 
   const handleShopifyConnect = () => {
@@ -51,6 +54,28 @@ const Integrations = () => {
     toast({
       title: "Updating Prices...",
       description: "Fetching latest prices from TCGPlayer",
+    });
+  };
+
+  const handleCardKingdomConnect = () => {
+    toast({
+      title: "Connecting to Card Kingdom...",
+      description: "Setting up pricing integration",
+    });
+    
+    setTimeout(() => {
+      setIsCardKingdomConnected(true);
+      toast({
+        title: "Card Kingdom Connected!",
+        description: "Pricing integration is now active.",
+      });
+    }, 2000);
+  };
+
+  const handleCardKingdomSync = () => {
+    toast({
+      title: "Updating Prices...",
+      description: "Fetching latest prices from Card Kingdom",
     });
   };
 
@@ -129,99 +154,155 @@ const Integrations = () => {
         )}
       </Card>
 
-      {/* TCGPlayer Pricing */}
-      <Card className="p-6 bg-gradient-card border-border/50">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center space-x-4">
-            <div className="p-3 bg-primary/10 rounded-lg">
-              <Zap className="h-8 w-8 text-primary" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold">TCGPlayer Pricing</h3>
-              <p className="text-muted-foreground">Automatically sync market prices for your TCG products</p>
-            </div>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Label htmlFor="live-pricing">Live Pricing</Label>
-            <Switch
-              id="live-pricing"
-              checked={livePricingEnabled}
-              onCheckedChange={setLivePricingEnabled}
-            />
-          </div>
+      {/* Pricing and Markets Section */}
+      <div>
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold flex items-center gap-2">
+            <DollarSign className="h-6 w-6 text-primary" />
+            Pricing and Markets
+          </h2>
+          <p className="text-muted-foreground">Connect to trading card marketplaces for real-time pricing</p>
         </div>
 
-        {livePricingEnabled && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <h4 className="font-semibold">Currency Conversion (USD → ZAR)</h4>
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      checked={useFixedRate}
-                      onCheckedChange={setUseFixedRate}
-                    />
-                    <Label>Fixed Rate</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      checked={!useFixedRate}
-                      onCheckedChange={(checked) => setUseFixedRate(!checked)}
-                    />
-                    <Label>Live Exchange Rate</Label>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* TCGPlayer Integration */}
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-primary/10 rounded-lg">
+                  <Zap className="h-8 w-8 text-primary" />
                 </div>
-                
-                {useFixedRate && (
-                  <div className="space-y-2">
-                    <Label htmlFor="conversion-rate">Fixed Conversion Rate</Label>
-                    <Input
-                      id="conversion-rate"
-                      type="number"
-                      step="0.01"
-                      value={conversionRate}
-                      onChange={(e) => setConversionRate(e.target.value)}
-                      placeholder="18.50"
-                    />
-                    <p className="text-xs text-muted-foreground">
-                      1 USD = {conversionRate} ZAR
-                    </p>
+                <div>
+                  <h3 className="text-xl font-semibold">TCGPlayer</h3>
+                  <p className="text-muted-foreground">Market leader for TCG pricing</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Label htmlFor="live-pricing">Live Pricing</Label>
+                <Switch
+                  id="live-pricing"
+                  checked={livePricingEnabled}
+                  onCheckedChange={setLivePricingEnabled}
+                />
+              </div>
+            </div>
+
+            {livePricingEnabled && (
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h4 className="font-semibold">Currency Conversion (USD → ZAR)</h4>
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        checked={useFixedRate}
+                        onCheckedChange={setUseFixedRate}
+                      />
+                      <Label>Fixed Rate</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Switch
+                        checked={!useFixedRate}
+                        onCheckedChange={(checked) => setUseFixedRate(!checked)}
+                      />
+                      <Label>Live Exchange Rate</Label>
+                    </div>
                   </div>
+                  
+                  {useFixedRate && (
+                    <div className="space-y-2">
+                      <Label htmlFor="conversion-rate">Fixed Conversion Rate</Label>
+                      <Input
+                        id="conversion-rate"
+                        type="number"
+                        step="0.01"
+                        value={conversionRate}
+                        onChange={(e) => setConversionRate(e.target.value)}
+                        placeholder="18.50"
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        1 USD = {conversionRate} ZAR
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex space-x-2">
+                  <Button onClick={handlePriceSync} className="bg-gradient-primary hover:shadow-primary flex-1">
+                    <RefreshCw className="mr-2 h-4 w-4" />
+                    Sync Prices
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Card>
+
+          {/* Card Kingdom Integration */}
+          <Card className="p-6 bg-gradient-card border-border/50">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-warning/10 rounded-lg">
+                  <TrendingUp className="h-8 w-8 text-warning" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold">Card Kingdom</h3>
+                  <p className="text-muted-foreground">Premium card marketplace</p>
+                </div>
+              </div>
+              <Badge variant={isCardKingdomConnected ? "default" : "secondary"} className="flex items-center gap-2">
+                {isCardKingdomConnected ? (
+                  <>
+                    <CheckCircle className="h-3 w-3" />
+                    Connected
+                  </>
+                ) : (
+                  <>
+                    <AlertCircle className="h-3 w-3" />
+                    Not Connected
+                  </>
                 )}
-              </div>
+              </Badge>
+            </div>
 
+            {!isCardKingdomConnected ? (
               <div className="space-y-4">
-                <h4 className="font-semibold">Sync Settings</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <Label>Auto-sync frequency</Label>
-                    <select className="bg-input border border-border rounded px-3 py-1 text-sm">
-                      <option>Every hour</option>
-                      <option>Every 4 hours</option>
-                      <option>Daily</option>
-                    </select>
+                <p className="text-sm text-muted-foreground">
+                  Connect to Card Kingdom for premium pricing data and buylist information.
+                </p>
+                <Button onClick={handleCardKingdomConnect} className="w-full" variant="outline">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Connect Card Kingdom
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center p-3 bg-muted/50 rounded-lg">
+                    <p className="text-lg font-bold text-warning">$2,341</p>
+                    <p className="text-xs text-muted-foreground">Buylist Value</p>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <Label>Price change threshold</Label>
-                    <Input className="w-20" type="number" placeholder="5" />
+                  <div className="text-center p-3 bg-muted/50 rounded-lg">
+                    <p className="text-lg font-bold text-success">892</p>
+                    <p className="text-xs text-muted-foreground">Items Tracked</p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="flex space-x-4">
-              <Button onClick={handlePriceSync} className="bg-gradient-primary hover:shadow-primary">
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Sync Prices Now
-              </Button>
-              <Button variant="outline">
-                View Price History
-              </Button>
-            </div>
-          </div>
-        )}
-      </Card>
+                <div className="flex space-x-2">
+                  <Button onClick={handleCardKingdomSync} className="bg-gradient-primary hover:shadow-primary flex-1">
+                    <RefreshCw className="mr-2 h-4 w-4" />
+                    Sync Prices
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Card>
+        </div>
+      </div>
 
       {/* Additional Integrations */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
