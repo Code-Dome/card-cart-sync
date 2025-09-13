@@ -84,18 +84,18 @@ const Products = () => {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8 max-w-7xl mx-auto">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Products</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Products</h1>
           <p className="text-muted-foreground">Manage your inventory and sync with external platforms</p>
         </div>
-        <div className="flex space-x-2">
-          <Button variant="outline">
+        <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 w-full sm:w-auto">
+          <Button variant="outline" className="w-full sm:w-auto">
             <RefreshCw className="mr-2 h-4 w-4" />
             Sync All
           </Button>
-          <Button className="bg-gradient-primary hover:shadow-primary">
+          <Button className="bg-gradient-primary hover:shadow-primary w-full sm:w-auto">
             <Plus className="mr-2 h-4 w-4" />
             Add Product
           </Button>
@@ -103,36 +103,36 @@ const Products = () => {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <Card className="p-6 bg-gradient-card border-border/50">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
           <div className="text-center">
-            <p className="text-2xl font-bold text-primary">1,247</p>
-            <p className="text-sm text-muted-foreground">Total Products</p>
+            <p className="text-lg sm:text-2xl font-bold text-primary">1,247</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Total Products</p>
           </div>
         </Card>
-        <Card className="p-6 bg-gradient-card border-border/50">
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
           <div className="text-center">
-            <p className="text-2xl font-bold text-success">1,124</p>
-            <p className="text-sm text-muted-foreground">In Stock</p>
+            <p className="text-lg sm:text-2xl font-bold text-success">1,124</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">In Stock</p>
           </div>
         </Card>
-        <Card className="p-6 bg-gradient-card border-border/50">
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
           <div className="text-center">
-            <p className="text-2xl font-bold text-warning">89</p>
-            <p className="text-sm text-muted-foreground">Low Stock</p>
+            <p className="text-lg sm:text-2xl font-bold text-warning">89</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Low Stock</p>
           </div>
         </Card>
-        <Card className="p-6 bg-gradient-card border-border/50">
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
           <div className="text-center">
-            <p className="text-2xl font-bold text-destructive">34</p>
-            <p className="text-sm text-muted-foreground">Out of Stock</p>
+            <p className="text-lg sm:text-2xl font-bold text-destructive">34</p>
+            <p className="text-xs sm:text-sm text-muted-foreground">Out of Stock</p>
           </div>
         </Card>
       </div>
 
       {/* Filters and Search */}
-      <Card className="p-6 bg-gradient-card border-border/50">
-        <div className="flex flex-col md:flex-row gap-4">
+      <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
+        <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
@@ -144,9 +144,9 @@ const Products = () => {
               />
             </div>
           </div>
-          <div className="flex space-x-2">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
             <select 
-              className="bg-input border border-border rounded px-3 py-2"
+              className="bg-input border border-border rounded px-3 py-2 min-w-0 flex-1 sm:flex-initial"
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
@@ -155,7 +155,7 @@ const Products = () => {
               <option value="Magic">Magic: The Gathering</option>
               <option value="Yu-Gi-Oh">Yu-Gi-Oh!</option>
             </select>
-            <Button variant="outline">
+            <Button variant="outline" className="w-full sm:w-auto">
               <Filter className="mr-2 h-4 w-4" />
               More Filters
             </Button>
@@ -163,60 +163,114 @@ const Products = () => {
         </div>
       </Card>
 
-      {/* Products Table */}
+      {/* Products Table - Mobile Cards on small screens, table on larger */}
       <Card className="bg-gradient-card border-border/50">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Product</TableHead>
-              <TableHead>SKU</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead>Shopify Price</TableHead>
-              <TableHead>TCG Price</TableHead>
-              <TableHead>Current Price</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Last Sync</TableHead>
-              <TableHead>Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredProducts.map((product) => (
-              <TableRow key={product.id}>
-                <TableCell className="font-medium">{product.name}</TableCell>
-                <TableCell className="text-muted-foreground">{product.sku}</TableCell>
-                <TableCell>
-                  <Badge variant="outline">{product.category}</Badge>
-                </TableCell>
-                <TableCell>{product.shopifyPrice}</TableCell>
-                <TableCell className="text-success">{product.tcgPrice}</TableCell>
-                <TableCell className="font-semibold">{product.currentPrice}</TableCell>
-                <TableCell>{product.stock}</TableCell>
-                <TableCell>
-                  <Badge className={getStatusColor(product.status)}>
-                    {product.status}
-                  </Badge>
-                </TableCell>
-                <TableCell className="text-muted-foreground text-sm">
-                  {product.lastSync}
-                </TableCell>
-                <TableCell>
-                  <div className="flex space-x-2">
-                    <Button size="sm" variant="ghost">
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost">
-                      <ExternalLink className="h-4 w-4" />
-                    </Button>
-                    <Button size="sm" variant="ghost" className="text-destructive">
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </TableCell>
+        {/* Mobile view */}
+        <div className="block lg:hidden p-4 space-y-4">
+          {filteredProducts.map((product) => (
+            <div key={product.id} className="border border-border rounded-lg p-4 space-y-3">
+              <div className="flex justify-between items-start">
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-medium truncate">{product.name}</h4>
+                  <p className="text-sm text-muted-foreground">{product.sku}</p>
+                </div>
+                <Badge className={getStatusColor(product.status)} >
+                  {product.status}
+                </Badge>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div>
+                  <span className="text-muted-foreground">Category:</span>
+                  <Badge variant="outline" className="ml-1 text-xs">{product.category}</Badge>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Stock:</span>
+                  <span className="ml-1 font-medium">{product.stock}</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">Current:</span>
+                  <span className="ml-1 font-semibold">{product.currentPrice}</span>
+                </div>
+                <div>
+                  <span className="text-muted-foreground">TCG:</span>
+                  <span className="ml-1 text-success">{product.tcgPrice}</span>
+                </div>
+              </div>
+              
+              <div className="flex justify-between items-center pt-2 border-t border-border">
+                <span className="text-xs text-muted-foreground">Last sync: {product.lastSync}</span>
+                <div className="flex space-x-1">
+                  <Button size="sm" variant="ghost">
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" variant="ghost">
+                    <ExternalLink className="h-4 w-4" />
+                  </Button>
+                  <Button size="sm" variant="ghost" className="text-destructive">
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop table view */}
+        <div className="hidden lg:block overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Product</TableHead>
+                <TableHead>SKU</TableHead>
+                <TableHead>Category</TableHead>
+                <TableHead>Shopify Price</TableHead>
+                <TableHead>TCG Price</TableHead>
+                <TableHead>Current Price</TableHead>
+                <TableHead>Stock</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Last Sync</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {filteredProducts.map((product) => (
+                <TableRow key={product.id}>
+                  <TableCell className="font-medium">{product.name}</TableCell>
+                  <TableCell className="text-muted-foreground">{product.sku}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline">{product.category}</Badge>
+                  </TableCell>
+                  <TableCell>{product.shopifyPrice}</TableCell>
+                  <TableCell className="text-success">{product.tcgPrice}</TableCell>
+                  <TableCell className="font-semibold">{product.currentPrice}</TableCell>
+                  <TableCell>{product.stock}</TableCell>
+                  <TableCell>
+                    <Badge className={getStatusColor(product.status)}>
+                      {product.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground text-sm">
+                    {product.lastSync}
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex space-x-2">
+                      <Button size="sm" variant="ghost">
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button size="sm" variant="ghost">
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                      <Button size="sm" variant="ghost" className="text-destructive">
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </Card>
     </div>
   );

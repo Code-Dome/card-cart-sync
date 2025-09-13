@@ -73,18 +73,18 @@ export const ClerkPricingTable = () => {
       </div>
 
       {/* Segmented billing control (ours) */}
-      <div className="flex justify-center">
+      <div className="flex justify-center px-4">
         <div
           role="tablist"
           aria-label="Billing period"
-          className="inline-flex rounded-full border border-border overflow-hidden"
+          className="inline-flex rounded-full border border-border overflow-hidden w-full max-w-xs sm:w-auto"
         >
           <button
             role="tab"
             aria-selected={billing === "monthly"}
             onClick={() => setBilling("monthly")}
             className={[
-              "px-4 py-2 transition",
+              "flex-1 sm:flex-initial px-4 py-2 transition text-sm sm:text-base",
               billing === "monthly"
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-foreground hover:bg-muted/80",
@@ -97,7 +97,7 @@ export const ClerkPricingTable = () => {
             aria-selected={billing === "annual"}
             onClick={() => setBilling("annual")}
             className={[
-              "px-4 py-2 transition border-l border-border",
+              "flex-1 sm:flex-initial px-4 py-2 transition border-l border-border text-sm sm:text-base",
               billing === "annual"
                 ? "bg-accent text-accent-foreground"
                 : "bg-muted text-foreground hover:bg-muted/80",
@@ -109,11 +109,11 @@ export const ClerkPricingTable = () => {
       </div>
 
       {/* Clerk's native pricing table */}
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-4">
         <div className="pricing-light text-center [&_*]:!text-center [&_*]:mx-auto relative">
           {/* Savings banner (shows only for annual) */}
           {bannerText && (
-            <div className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#F2C200] text-black px-3 py-1 text-xs font-semibold shadow">
+            <div className="pointer-events-none absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#F2C200] text-black px-3 py-1 text-xs font-semibold shadow z-10">
               {bannerText}
             </div>
           )}
@@ -128,7 +128,6 @@ export const ClerkPricingTable = () => {
             ctaPosition="top"
             collapseFeatures={true}
             appearance={{
-              cssLayerName: "components",
               variables: {
                 // brand colors (HEX for safety inside Clerk)
                 colorPrimary: "#F2C200",                  // yellow (CTA/focus)
@@ -137,28 +136,27 @@ export const ClerkPricingTable = () => {
                 borderRadius: "16px",
                 fontSize: "0.95rem",
                 fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
-                shadow: "0 12px 40px rgba(11,43,74,.12)",
               },
               elements: {
                 // bright card surface
                 card:
-                  "rounded-2xl border border-border/60 bg-gradient-to-b from-white to-gray-50 p-6 shadow-md",
+                  "rounded-2xl border border-border/60 bg-gradient-to-b from-white to-gray-50 p-4 sm:p-6 shadow-md",
 
-                cardHeader: "mb-5",
+                cardHeader: "mb-3 sm:mb-5",
                 planTitle:
-                  "text-xl font-semibold tracking-tight text-[#0B2B4A]",
-                priceText: "text-4xl font-extrabold text-[#0B2B4A]",
+                  "text-lg sm:text-xl font-semibold tracking-tight text-[#0B2B4A]",
+                priceText: "text-2xl sm:text-4xl font-extrabold text-[#0B2B4A]",
 
                 // plan badge color
-                badge: "bg-[#F2C200] text-black px-2 py-0.5 rounded-md",
+                badge: "bg-[#F2C200] text-black px-2 py-0.5 rounded-md text-sm",
 
                 // readable features + green checks
                 featureItem:
-                  "text-sm text-[#0B2B4A] flex items-center justify-center gap-2 before:content-['✓'] before:text-[#00A661] before:font-bold before:leading-none",
+                  "text-xs sm:text-sm text-[#0B2B4A] flex items-center justify-center gap-2 before:content-['✓'] before:text-[#00A661] before:font-bold before:leading-none",
 
                 // primary CTA
                 buttonPrimary:
-                  "w-full rounded-xl bg-[#F2C200] text-black font-semibold hover:brightness-95 transition mt-4 shadow",
+                  "w-full rounded-xl bg-[#F2C200] text-black font-semibold hover:brightness-95 transition mt-4 shadow text-sm sm:text-base py-3",
               },
             }}
             checkoutProps={{
@@ -166,7 +164,6 @@ export const ClerkPricingTable = () => {
                 variables: {
                   colorPrimary: "#F2C200",
                   borderRadius: "16px",
-                  shadow: "0 12px 30px rgba(11,43,74,.18)",
                 },
                 elements: {
                   buttonPrimary:

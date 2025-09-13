@@ -42,86 +42,86 @@ const stats = [
 
 const Dashboard = () => {
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 md:space-y-8 max-w-7xl mx-auto">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">Welcome back to your POS system</p>
         </div>
-        <Button className="bg-gradient-primary hover:shadow-primary">
+        <Button className="bg-gradient-primary hover:shadow-primary w-full sm:w-auto">
           <ShoppingCart className="mr-2 h-4 w-4" />
           New Sale
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {stats.map((stat) => (
-          <Card key={stat.title} className="p-6 bg-gradient-card border-border/50">
+          <Card key={stat.title} className="p-4 md:p-6 bg-gradient-card border-border/50">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs sm:text-sm font-medium text-muted-foreground truncate">
                   {stat.title}
                 </p>
                 <div className="flex items-center space-x-2">
-                  <p className="text-2xl font-bold">{stat.value}</p>
-                  <span className={`text-sm ${stat.trend === 'up' ? 'text-success' : 'text-destructive'}`}>
+                  <p className="text-xl sm:text-2xl font-bold">{stat.value}</p>
+                  <span className={`text-xs sm:text-sm ${stat.trend === 'up' ? 'text-success' : 'text-destructive'}`}>
                     {stat.change}
                   </span>
                 </div>
               </div>
-              <div className="p-3 bg-primary/10 rounded-lg">
-                <stat.icon className="h-6 w-6 text-primary" />
+              <div className="p-2 md:p-3 bg-primary/10 rounded-lg flex-shrink-0">
+                <stat.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
               </div>
             </div>
           </Card>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="p-6 bg-gradient-card border-border/50">
-          <h3 className="text-lg font-semibold mb-4">Recent Activity</h3>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
+          <h3 className="text-base sm:text-lg font-semibold mb-4">Recent Activity</h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span className="text-sm">New product synced from Shopify</span>
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
+                <div className="w-2 h-2 bg-success rounded-full flex-shrink-0"></div>
+                <span className="text-sm truncate">New product synced from Shopify</span>
               </div>
-              <span className="text-xs text-muted-foreground">2 min ago</span>
+              <span className="text-xs text-muted-foreground flex-shrink-0">2 min ago</span>
             </div>
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full"></div>
-                <span className="text-sm">Price updated from TCGPlayer</span>
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
+                <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                <span className="text-sm truncate">Price updated from TCGPlayer</span>
               </div>
-              <span className="text-xs text-muted-foreground">5 min ago</span>
+              <span className="text-xs text-muted-foreground flex-shrink-0">5 min ago</span>
             </div>
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 bg-warning rounded-full"></div>
-                <span className="text-sm">Low stock alert: Pokemon Booster</span>
+              <div className="flex items-center space-x-3 min-w-0 flex-1">
+                <div className="w-2 h-2 bg-warning rounded-full flex-shrink-0"></div>
+                <span className="text-sm truncate">Low stock alert: Pokemon Booster</span>
               </div>
-              <span className="text-xs text-muted-foreground">12 min ago</span>
+              <span className="text-xs text-muted-foreground flex-shrink-0">12 min ago</span>
             </div>
           </div>
         </Card>
 
-        <Card className="p-6 bg-gradient-card border-border/50">
-          <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-2 gap-4">
-            <Button variant="outline" className="h-16 flex-col">
-              <Package className="h-6 w-6 mb-2" />
+        <Card className="p-4 md:p-6 bg-gradient-card border-border/50">
+          <h3 className="text-base sm:text-lg font-semibold mb-4">Quick Actions</h3>
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
+            <Button variant="outline" className="h-14 md:h-16 flex-col text-xs sm:text-sm">
+              <Package className="h-5 w-5 md:h-6 md:w-6 mb-1 md:mb-2" />
               Add Product
             </Button>
-            <Button variant="outline" className="h-16 flex-col">
-              <ShoppingCart className="h-6 w-6 mb-2" />
+            <Button variant="outline" className="h-14 md:h-16 flex-col text-xs sm:text-sm">
+              <ShoppingCart className="h-5 w-5 md:h-6 md:w-6 mb-1 md:mb-2" />
               New Sale
             </Button>
-            <Button variant="outline" className="h-16 flex-col">
-              <TrendingUp className="h-6 w-6 mb-2" />
+            <Button variant="outline" className="h-14 md:h-16 flex-col text-xs sm:text-sm">
+              <TrendingUp className="h-5 w-5 md:h-6 md:w-6 mb-1 md:mb-2" />
               View Reports
             </Button>
-            <Button variant="outline" className="h-16 flex-col">
-              <Users className="h-6 w-6 mb-2" />
+            <Button variant="outline" className="h-14 md:h-16 flex-col text-xs sm:text-sm">
+              <Users className="h-5 w-5 md:h-6 md:w-6 mb-1 md:mb-2" />
               Customer List
             </Button>
           </div>

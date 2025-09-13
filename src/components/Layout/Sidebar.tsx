@@ -8,10 +8,14 @@ import {
   Users, 
   BarChart3,
   Link as LinkIcon,
-  CreditCard
+  CreditCard,
+  Menu,
+  X
 } from "lucide-react";
 import { useLocation, Link } from "react-router-dom";
 import { useSubscriptionStatus } from "@/utils/subscription";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true, showIfPro: true },
@@ -27,23 +31,37 @@ const navigation = [
 export const Sidebar = () => {
   const location = useLocation();
   const { data } = useSubscriptionStatus()
+  const isMobile = useIsMobile()
+  const [isOpen, setIsOpen] = useState(false)
 
-  return (
-    <div className="w-64 h-screen bg-card border-r border-border sticky top-0">
+  const sidebarContent = (
+    <>
       <div className="p-6">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg"></div>
-          <span className="text-xl font-bold">CardShop POS</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-primary rounded-lg"></div>
+            <span className="text-xl font-bold">CardShop POS</span>
+          </div>
+          {isMobile && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsOpen(false)}
+              className="md:hidden"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </div>
       
-      <nav className="px-4 space-y-2">
+      <nav className="px-4 space-y-2 flex-1 overflow-y-auto">
         {navigation.map((item) => {
           if (data.plan !== "pro_plus" && item.requiresPlan) return;
           if (data.plan === "pro_plus" && !item.showIfPro) return;
 
           return (
-          <Link key={item.name} to={item.href}>
+          <Link key={item.name} to={item.href} onClick={() => isMobile && setIsOpen(false)}>
             <Button
               variant={location.pathname === item.href ? "secondary" : "ghost"}
               className={cn(
@@ -58,6 +76,43 @@ export const Sidebar = () => {
         )
         })}
       </nav>
+    </>
+  )
+
+  // Mobile menu button
+  const MobileMenuButton = () => (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setIsOpen(true)}
+      className="md:hidden fixed top-4 left-4 z-50 bg-card border border-border"
+    >
+      <Menu className="h-5 w-5" />
+    </Button>
+  )
+
+  if (isMobile) {
+    return (
+      <>
+        <MobileMenuButton />
+        {isOpen && (
+          <div className="fixed inset-0 z-40 flex">
+            <div 
+              className="fixed inset-0 bg-black/50" 
+              onClick={() => setIsOpen(false)}
+            />
+            <div className="relative flex flex-col w-80 max-w-xs bg-card border-r border-border">
+              {sidebarContent}
+            </div>
+          </div>
+        )}
+      </>
+    )
+  }
+
+  return (
+    <div className="w-64 h-screen bg-card border-r border-border sticky top-0 flex flex-col">
+      {sidebarContent}
     </div>
   );
 };

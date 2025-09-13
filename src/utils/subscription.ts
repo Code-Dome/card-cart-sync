@@ -52,7 +52,7 @@ function readFromMetadata(user: UserResource | null | undefined): SubscriptionDa
   if (!user?.publicMetadata) return null;
   const md = user.publicMetadata as Record<string, unknown>;
   const status = (md[MD.status] as SubscriptionStatus) ?? "inactive";
-  const plan = (md[MD.plan] as SubscriptionPlan) ?? "starter";
+  const plan = (md[MD.plan] as string) ?? "starter";
   const trialEndsAt = md[MD.trialEndsAt] as string | undefined;
   const currentPeriodEnd = md[MD.currentPeriodEnd] as string | undefined;
   const cancelAtPeriodEnd = md[MD.cancelAtPeriodEnd] as boolean | undefined;
