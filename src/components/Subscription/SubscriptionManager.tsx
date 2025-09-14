@@ -66,7 +66,7 @@ export const SubscriptionManager = () => {
     <div className="space-y-6">
       <div>
         <h3 className="text-2xl font-semibold mb-2">Subscription Management</h3>
-        <p className="text-muted-foreground">Manage your CollectorPOS subscription and billing</p>
+        <p className="text-muted-foreground">Manage your CardShop POS subscription and billing</p>
       </div>
 
       {/* Current Plan */}
@@ -77,7 +77,7 @@ export const SubscriptionManager = () => {
               <CreditCard className="h-8 w-8 text-primary" />
             </div>
             <div>
-              <h4 className="text-xl font-semibold">CollectorPOS {hasProPlan ? 'Professional' : 'Free'}</h4>
+              <h4 className="text-xl font-semibold">CardShop POS {hasProPlan ? 'Professional' : 'Free'}</h4>
               <p className="text-muted-foreground">Your current subscription plan</p>
             </div>
           </div>
@@ -166,7 +166,7 @@ export const SubscriptionManager = () => {
         <div className="space-y-3">
           <div className="flex items-center justify-between py-2 border-b border-border/50">
             <div>
-              <div className="font-medium">CollectorPOS Professional</div>
+              <div className="font-medium">CardShop POS Professional</div>
               <div className="text-sm text-muted-foreground">Jan 15, 2024</div>
             </div>
             <div className="text-right">
@@ -176,7 +176,7 @@ export const SubscriptionManager = () => {
           </div>
           <div className="flex items-center justify-between py-2 border-b border-border/50">
             <div>
-              <div className="font-medium">CollectorPOS Professional</div>
+              <div className="font-medium">CardShop POS Professional</div>
               <div className="text-sm text-muted-foreground">Dec 15, 2023</div>
             </div>
             <div className="text-right">

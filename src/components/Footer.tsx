@@ -1,6 +1,6 @@
 import React from 'react';
-import { Heart, ExternalLink } from 'lucide-react';
-import { Button } from "@/components/ui/button.tsx";
+import { Heart } from 'lucide-react';
+import {Button} from "@/components/ui/button.tsx";
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -15,37 +15,35 @@ export function Footer() {
         <footer className="bg-card text-brand-light py-16">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl mx-auto">
-                    {/* Main Footer Content */}
                     <div className="grid md:grid-cols-3 gap-12 mb-12">
-                        {/* Company Info (Left) */}
-                        <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-1">
+                        <div
+                            className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-1">
+                            <div className="w-10 h-10 rounded-xl animate-glow"><img
+                                src={"./src/assets/logo_favicon.png"} alt="logo"/></div>
                             <h3 className="text-xl font-bold text-primary">CardShop POS</h3>
                             <p className="text-muted-foreground leading-relaxed">
-                                Professional POS system for TCG and collectibles shops with Shopify integration and live pricing.
+                                Professional POS system for TCG and collectibles shops with Shopify integration and live
+                                pricing.
                             </p>
                             <p className="text-xs text-muted-foreground mb-2">
-                                Product by{" "}
-                                <a href="https://www.shogunn.dev">
-                                    <span className="text-purple-500 font-medium">Shogun Dot Dev</span>
-                                </a>
+                                Product by <a href={"https://www.shogunn.dev"}><span
+                                className="text-accent font-medium">Shogun Dot Dev</span></a>
                             </p>
                         </div>
 
-                        {/* Empty middle column if needed */}
-                        <div className="hidden md:block" />
-
-                        {/* Quick Links (Right) */}
-                        <div className="flex flex-col items-center text-center md:col-span-1 md:col-start-3">
-                            <h4 className="text-lg font-semibold text-brand-light">Quick Links</h4>
-                            <ul className="space-y-3 mt-4">
+                        <div className="hidden md:block"/>
+                        <div
+                            className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-3">
+                            <h3 className="text-xl font-bold text-primary px-3">QUICK LINKS</h3>
+                            <ul className={"w-full"}>
                                 {quickLinks.map((link, index) => (
                                     <li key={index}>
                                         <Button
                                             variant="ghost"
-                                            className="h-auto px-3 py-2 text-muted-foreground hover:text-primary hover:bg-primary/10 justify-start rounded-md transition-all duration-200"
+                                            className="h-auto px-3 py-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-all duration-200 md:justify-start"
                                             asChild
                                         >
-                                            <a href={link.href} className="flex items-center gap-2 w-full">
+                                            <a href={link.href} className="flex gap-2 w-full">
                                                 {link.icon}
                                                 {link.name}
                                             </a>
@@ -54,22 +52,45 @@ export function Footer() {
                                 ))}
                             </ul>
                         </div>
+                        {/*<div className="flex flex-col items-center md:items-start">*/}
+                        {/*  <h4 className="text-lg font-semibold text-brand-light md:justify-center">Quick Links</h4>*/}
+                        {/*  <ul className="mt-4">*/}
+                        {/*    {quickLinks.map((link, index) => (*/}
+                        {/*        <li key={index}>*/}
+                        {/*          <Button*/}
+                        {/*              variant="ghost"*/}
+                        {/*              className="h-auto px-3 py-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-md transition-all duration-200 md:justify-start"*/}
+                        {/*              asChild*/}
+                        {/*          >*/}
+                        {/*            <a href={link.href} className="flex gap-2 w-full">*/}
+                        {/*              {link.icon}*/}
+                        {/*              {link.name}*/}
+                        {/*            </a>*/}
+                        {/*          </Button>*/}
+                        {/*        </li>*/}
+                        {/*    ))}*/}
+                        {/*  </ul>*/}
+                        {/*</div>*/}
                     </div>
 
                     {/* Bottom Bar */}
                     <div className="border-t border-border/20 pt-8">
                         <div className="flex flex-col items-center text-center gap-4 md:flex-row md:justify-between md:text-left">
                             <p className="text-sm text-muted-foreground">
-                                © 2025 Superhobby (Pty) Ltd | All rights reserved.
+                                © 2025 <a href={"https://www.superhobby.co.za"} className={"text-terminal-green"}>Superhobby
+                                (Pty) Ltd</a> | All rights
+                                reserved.
                             </p>
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
                                 <span>Built with</span>
-                                <Heart className="w-3 h-3 text-purple-500" />
+                                <Heart className="w-3 h-3 text-accent"/>
                                 <span>for hobbyists</span>
+
                             </div>
                         </div>
                     </div>
-                    <code className="flex mt-2 text-muted-foreground text-sm sm:text-center justify-center mt-6">Version {version}</code>
+                    {/*<code*/}
+                    {/*    className="flex mt-2 text-muted-foreground text-sm sm:text-center justify-center mt-6 text-terminal-green/40">Version {version}</code>*/}
                 </div>
             </div>
         </footer>

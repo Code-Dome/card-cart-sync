@@ -56,7 +56,7 @@ export const shopifyApi = {
       setTimeout(() => {
         resolve({
           id: 'shop_123456',
-          name: 'TCG Collector Store',
+          name: 'CardShop Store',
           domain: 'tcg-collector.myshopify.com',
           email: 'owner@tcgcollector.com',
           currency: 'USD'
