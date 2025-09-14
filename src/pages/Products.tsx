@@ -18,8 +18,13 @@ import {
   Trash2, 
   RefreshCw,
   Filter,
-  ExternalLink
+  ExternalLink,
+  Upload,
+  Download
 } from "lucide-react";
+import { CSVImportModal } from "@/components/Inventory/CSVImportModal";
+import { CSVExportModal } from "@/components/Inventory/CSVExportModal";
+import { ImportedProduct } from "@/services/csvService";
 
 // Mock product data
 const mockProducts = [
@@ -64,11 +69,32 @@ const mockProducts = [
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [products, setProducts] = useState(mockProducts);
+  const [importModalOpen, setImportModalOpen] = useState(false);
+  const [exportModalOpen, setExportModalOpen] = useState(false);
 
-  const filteredProducts = mockProducts.filter(product => 
+  const filteredProducts = products.filter(product => 
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
     (selectedCategory === "All" || product.category === selectedCategory)
   );
+
+  const handleImportProducts = (importedProducts: ImportedProduct[]) => {
+    // Convert imported products to the format expected by our app
+    const newProducts = importedProducts.map((imported, index) => ({
+      id: `imported-${Date.now()}-${index}`,
+      name: imported.name,
+      sku: imported.sku,
+      category: imported.category,
+      shopifyPrice: imported.currentPrice,
+      tcgPrice: imported.tcgPrice,
+      currentPrice: imported.currentPrice,
+      stock: imported.stock,
+      status: imported.status,
+      lastSync: "Just imported",
+    }));
+
+    setProducts(prev => [...prev, ...newProducts]);
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -94,6 +120,22 @@ const Products = () => {
           <Button variant="outline" className="w-full sm:w-auto">
             <RefreshCw className="mr-2 h-4 w-4" />
             Sync All
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={() => setImportModalOpen(true)}
+            className="w-full sm:w-auto"
+          >
+            <Upload className="mr-2 h-4 w-4" />
+            Import CSV
+          </Button>
+          <Button 
+            variant="outline"
+            onClick={() => setExportModalOpen(true)}
+            className="w-full sm:w-auto"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Export CSV
           </Button>
           <Button className="bg-gradient-primary hover:shadow-primary w-full sm:w-auto">
             <Plus className="mr-2 h-4 w-4" />
@@ -272,6 +314,19 @@ const Products = () => {
           </Table>
         </div>
       </Card>
+
+      {/* Import/Export Modals */}
+      <CSVImportModal
+        open={importModalOpen}
+        onOpenChange={setImportModalOpen}
+        onImport={handleImportProducts}
+      />
+      
+      <CSVExportModal
+        open={exportModalOpen}
+        onOpenChange={setExportModalOpen}
+        products={products}
+      />
     </div>
   );
 };
