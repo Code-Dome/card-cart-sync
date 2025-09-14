@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/components/ui/use-toast";
 import { CSVService, ImportedProduct } from "@/services/csvService";
-import { Upload, Download, Database, AlertCircle, CheckCircle } from "lucide-react";
+import { Upload, Download, Database, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
 
 interface CSVImportModalProps {
   open: boolean;
@@ -27,6 +28,7 @@ export const CSVImportModal = ({
   const [importProgress, setImportProgress] = useState(0);
   const [fetchingScryfallData, setFetchingScryfallData] = useState(false);
   const [importPreview, setImportPreview] = useState<ImportedProduct[]>([]);
+  const [convertToRand, setConvertToRand] = useState(false);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -57,7 +59,12 @@ export const CSVImportModal = ({
 
       // Limit to first 1000 cards for demo purposes
       const limitedCards = cards.slice(0, 1000);
-      const products = CSVService.convertScryfallToProducts(limitedCards);
+      let products = CSVService.convertScryfallToProducts(limitedCards);
+      
+      // Apply currency conversion if enabled
+      if (convertToRand) {
+        products = CSVService.applyRandConversion(products);
+      }
       
       setImportProgress(100);
       setImportPreview(products.slice(0, 10)); // Preview first 10
@@ -90,7 +97,13 @@ export const CSVImportModal = ({
 
     try {
       setImportProgress(50);
-      const products = await CSVService.parseCSV(selectedFile);
+      let products = await CSVService.parseCSV(selectedFile);
+      
+      // Apply currency conversion if enabled
+      if (convertToRand) {
+        products = CSVService.applyRandConversion(products);
+      }
+      
       setImportProgress(100);
       
       setImportPreview(products.slice(0, 10)); // Preview first 10
@@ -153,6 +166,27 @@ export const CSVImportModal = ({
         </DialogHeader>
 
         <div className="space-y-6">
+          {/* Currency Conversion Toggle */}
+          <Card className="p-4 border-dashed">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <DollarSign className="h-5 w-5 text-primary" />
+                <div>
+                  <Label htmlFor="convert-currency" className="text-sm font-medium">
+                    Convert USD to Rand
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    Convert USD prices to South African Rand (R18.50 = $1.00)
+                  </p>
+                </div>
+              </div>
+              <Switch
+                id="convert-currency"
+                checked={convertToRand}
+                onCheckedChange={setConvertToRand}
+              />
+            </div>
+          </Card>
           {/* Scryfall Import Section */}
           <Card className="p-6">
             <div className="space-y-4">

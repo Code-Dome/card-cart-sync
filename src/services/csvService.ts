@@ -243,6 +243,30 @@ export class CSVService {
     ].join('\n');
   }
 
+  // Convert USD price to ZAR (South African Rand)
+  static convertUsdToRand(usdPrice: string): string {
+    const USD_TO_ZAR_RATE = 18.50; // Current approximate exchange rate
+    
+    // Extract numeric value from price string (handles $X.XX format)
+    const numericValue = parseFloat(usdPrice.replace(/[^0-9.]/g, ''));
+    
+    if (isNaN(numericValue)) {
+      return usdPrice; // Return original if can't parse
+    }
+    
+    const randValue = numericValue * USD_TO_ZAR_RATE;
+    return `R${randValue.toFixed(2)}`;
+  }
+
+  // Apply currency conversion to products
+  static applyRandConversion(products: ImportedProduct[]): ImportedProduct[] {
+    return products.map(product => ({
+      ...product,
+      tcgPrice: product.tcgPrice !== 'N/A' ? this.convertUsdToRand(product.tcgPrice) : 'N/A',
+      currentPrice: product.currentPrice !== 'N/A' ? this.convertUsdToRand(product.currentPrice) : 'N/A',
+    }));
+  }
+
   // Download file helper
   static downloadFile(content: string, filename: string, mimeType = 'text/csv') {
     const blob = new Blob([content], { type: mimeType });
