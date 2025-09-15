@@ -1,44 +1,42 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CardShop POS - Card & Collectibles POS System | Built by Shogun Dot Dev</title>
-  <meta name="description" content="CardShop POS is a professional POS system for trading card game (TCG) and collectibles shops. Features Shopify integration, live pricing, and advanced inventory management. Developed by Shogun Dot Dev (Pty) Ltd for Superhobby (Pty) Ltd." />
-  <meta name="author" content="Shogun Dot Dev (Pty) Ltd - https://www.shogunn.dev" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CardShop POS - Card & Collectibles POS System | Built by Shogun Dot Dev</title>
+    <meta name="description" content="CardShop POS is a professional POS system for trading card game (TCG) and collectibles shops. Features Shopify integration, live pricing, and advanced inventory management. Developed by Shogun Dot Dev (Pty) Ltd for Superhobby (Pty) Ltd." />
+    <meta name="author" content="Shogun Dot Dev (Pty) Ltd - https://www.shogunn.dev" />
 
-  <!-- Favicon & App Icons -->
-  <link rel="icon" type="image/png" href="/logo_favicon.png" />
-  <link rel="apple-touch-icon" href="/logo_favicon.png" />
+    <!-- Favicon & App Icons (ensure /public/logo_favicon.png exists) -->
+    <link rel="icon" type="image/png" href="/logo_favicon.png" />
+    <link rel="apple-touch-icon" href="/logo_favicon.png" />
 
-  <!-- Canonical -->
-  <link rel="canonical" href="https://www.shogunn.dev" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.shogunn.dev" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="CardShop POS - Card & Collectibles POS System" />
-  <meta property="og:description" content="POS system for TCG and collectibles stores with Shopify integration, live pricing, and streamlined sales tools. Built by Shogun Dot Dev for Superhobby (Pty) Ltd." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.shogunn.dev" />
-  <meta property="og:image" content="/logo_favicon.png" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="CardShop POS - Card & Collectibles POS System" />
+    <meta property="og:description" content="POS system for TCG and collectibles stores with Shopify integration, live pricing, and streamlined sales tools. Built by Shogun Dot Dev for Superhobby (Pty) Ltd." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.shogunn.dev" />
+    <meta property="og:image" content="/logo_favicon.png" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:creator" content="@shogundotdev" />
-  <meta name="twitter:site" content="@shogundotdev" />
-  <meta name="twitter:title" content="CardShop POS - Card & Collectibles POS System" />
-  <meta name="twitter:description" content="Professional POS system for TCG and collectibles shops with Shopify integration and live pricing. Developed by Shogun Dot Dev for Superhobby (Pty) Ltd." />
-  <meta name="twitter:image" content="/logo_favicon.png" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CardShop POS - Card & Collectibles POS System" />
+    <meta name="twitter:description" content="Professional POS system for TCG and collectibles shops with Shopify integration and live pricing. Developed by Shogun Dot Dev for Superhobby (Pty) Ltd." />
+    <meta name="twitter:image" content="/logo_favicon.png" />
 
-  <!-- Keywords -->
-  <meta name="keywords" content="CardShop POS, POS system, TCG POS, card shop POS, collectibles POS, Shopify POS integration, Shogun Dot Dev, Superhobby, card shop software" />
+    <!-- Keywords -->
+    <meta name="keywords" content="CardShop POS, POS system, TCG POS, card shop POS, collectibles POS, Shopify POS integration, Shogun Dot Dev, Superhobby, card shop software" />
 
-  <!-- Structured Data (JSON-LD for SEO) -->
-  <script type="application/ld+json">
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -59,11 +57,25 @@
         "name": "Superhobby (Pty) Ltd"
       }
     }
-  </script>
-</head>
+    </script>
 
-<body>
-<div id="root"></div>
-<script type="module" src="/src/main.tsx"></script>
-</body>
+    <!-- Structured Data: Organization (Shogun Dot Dev) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Shogun Dot Dev (Pty) Ltd",
+      "url": "https://www.shogunn.dev",
+      "logo": "https://shogunn.dev/assets/shogun-logo-JcXCoXQw.png",
+      "sameAs": [
+        "https://www.linkedin.com/company/shogun-dot-dev"
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
