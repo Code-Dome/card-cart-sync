@@ -17,14 +17,14 @@ import {
   TrendingUp
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useSettings } from "@/contexts/SettingsContext";
 
 const Integrations = () => {
   const [isShopifyConnected, setIsShopifyConnected] = useState(false);
   const [livePricingEnabled, setLivePricingEnabled] = useState(false);
-  const [conversionRate, setConversionRate] = useState("18.50");
-  const [useFixedRate, setUseFixedRate] = useState(true);
   const [isCardKingdomConnected, setIsCardKingdomConnected] = useState(false);
   const { toast } = useToast();
+  const { conversionRate, useFixedRate, setConversionRate, setUseFixedRate } = useSettings();
 
   const handleShopifyConnect = () => {
     // Mock OAuth flow
@@ -216,7 +216,7 @@ const Integrations = () => {
                         type="number"
                         step="0.01"
                         value={conversionRate}
-                        onChange={(e) => setConversionRate(e.target.value)}
+                        onChange={(e) => setConversionRate(Number(e.target.value))}
                         placeholder="18.50"
                       />
                       <p className="text-xs text-muted-foreground">

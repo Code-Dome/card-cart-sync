@@ -7,7 +7,16 @@ import { Progress } from "@/components/ui/progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { useToast } from "@/components/ui/use-toast";
+import { 
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { useToast } from "@/hooks/use-toast";
+import { useSettings } from "@/contexts/SettingsContext";
 import { CSVService, ImportedProduct } from "@/services/csvService";
 import { Upload, Download, Database, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
 
@@ -23,12 +32,20 @@ export const CSVImportModal = ({
   onImport,
 }: CSVImportModalProps) => {
   const { toast } = useToast();
+  const { getConversionRate } = useSettings();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
   const [fetchingScryfallData, setFetchingScryfallData] = useState(false);
   const [importPreview, setImportPreview] = useState<ImportedProduct[]>([]);
   const [convertToRand, setConvertToRand] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allProducts, setAllProducts] = useState<ImportedProduct[]>([]);
+  
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedPreview = allProducts.slice(startIndex, startIndex + itemsPerPage);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -63,11 +80,14 @@ export const CSVImportModal = ({
       
       // Apply currency conversion if enabled
       if (convertToRand) {
-        products = CSVService.applyRandConversion(products);
+        const rate = await getConversionRate();
+        products = await CSVService.applyRandConversion(products, rate);
       }
       
       setImportProgress(100);
-      setImportPreview(products.slice(0, 10)); // Preview first 10
+      setAllProducts(products);
+      setImportPreview(products.slice(0, itemsPerPage));
+      setCurrentPage(1);
       
       toast({
         title: "Success",
@@ -101,12 +121,14 @@ export const CSVImportModal = ({
       
       // Apply currency conversion if enabled
       if (convertToRand) {
-        products = CSVService.applyRandConversion(products);
+        const rate = await getConversionRate();
+        products = await CSVService.applyRandConversion(products, rate);
       }
       
       setImportProgress(100);
-      
-      setImportPreview(products.slice(0, 10)); // Preview first 10
+      setAllProducts(products);
+      setImportPreview(products.slice(0, itemsPerPage));
+      setCurrentPage(1);
       
       toast({
         title: "Success",
@@ -142,6 +164,8 @@ export const CSVImportModal = ({
       delete (window as any).pendingScryfallImport;
       delete (window as any).pendingCSVImport;
       setImportPreview([]);
+      setAllProducts([]);
+      setCurrentPage(1);
       setSelectedFile(null);
     }
   };
@@ -280,7 +304,7 @@ export const CSVImportModal = ({
           </Card>
 
           {/* Import Preview */}
-          {importPreview.length > 0 && (
+          {allProducts.length > 0 && (
             <Card className="p-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -294,9 +318,7 @@ export const CSVImportModal = ({
                 <Alert>
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
-                    Showing preview of first 10 products. Total products to import: {
-                      ((window as any).pendingScryfallImport || (window as any).pendingCSVImport)?.length || 0
-                    }
+                    Showing {paginatedPreview.length} of {allProducts.length} products. Use pagination to browse all items.
                   </AlertDescription>
                 </Alert>
 
@@ -312,8 +334,8 @@ export const CSVImportModal = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {importPreview.map((product, index) => (
-                        <tr key={index} className="border-b">
+                      {paginatedPreview.map((product, index) => (
+                        <tr key={startIndex + index} className="border-b">
                           <td className="p-2">{product.name}</td>
                           <td className="p-2 text-muted-foreground">{product.sku}</td>
                           <td className="p-2">{product.category}</td>
@@ -324,6 +346,54 @@ export const CSVImportModal = ({
                     </tbody>
                   </table>
                 </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex justify-center mt-4">
+                    <Pagination>
+                      <PaginationContent>
+                        <PaginationItem>
+                          <PaginationPrevious 
+                            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                            className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                          />
+                        </PaginationItem>
+                        
+                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                          let pageNum;
+                          if (totalPages <= 5) {
+                            pageNum = i + 1;
+                          } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                          } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = currentPage - 2 + i;
+                          }
+                          
+                          return (
+                            <PaginationItem key={pageNum}>
+                              <PaginationLink
+                                onClick={() => setCurrentPage(pageNum)}
+                                isActive={currentPage === pageNum}
+                                className="cursor-pointer"
+                              >
+                                {pageNum}
+                              </PaginationLink>
+                            </PaginationItem>
+                          );
+                        })}
+                        
+                        <PaginationItem>
+                          <PaginationNext 
+                            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                            className={currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                          />
+                        </PaginationItem>
+                      </PaginationContent>
+                    </Pagination>
+                  </div>
+                )}
               </div>
             </Card>
           )}
