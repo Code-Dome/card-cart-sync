@@ -67,7 +67,7 @@ export const LandingPage = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-xl animate-glow"><img
-                  src={"./src/assets/logo_favicon.png"} alt="logo"/></div>
+                  src={"./logo_favicon.png"} alt="logo"/></div>
               <span className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
                 CardShop POS
               </span>

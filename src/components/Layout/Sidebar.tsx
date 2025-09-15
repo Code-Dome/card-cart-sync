@@ -40,7 +40,7 @@ export const Sidebar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 rounded-lg">
-              <img src={"./src/assets/logo_favicon.png"} alt="logo" />
+              <img src={"./logo_favicon.png"} alt="logo" />
             </div>
             <span className="text-xl font-bold">CardShop POS</span>
           </div>

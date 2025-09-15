@@ -19,7 +19,7 @@ export function Footer() {
                         <div
                             className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-1">
                             <div className="w-10 h-10 rounded-xl animate-glow"><img
-                                src={"./src/assets/logo_favicon.png"} alt="logo"/></div>
+                                src={"./logo_favicon.png"} alt="logo"/></div>
                             <h3 className="text-xl font-bold text-primary">CardShop POS</h3>
                             <p className="text-muted-foreground leading-relaxed">
                                 Professional POS system for TCG and collectibles shops with Shopify integration and live
