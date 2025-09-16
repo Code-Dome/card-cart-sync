@@ -186,7 +186,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
             <div className="space-y-2">
               <Label htmlFor="currentPrice">Current Price</Label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 inline-block border-r border-gray-500 pr-2">
                   R
                 </span>
                 <Input
@@ -194,7 +194,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
                   value={formData.currentPrice || ""}
                   onChange={(e) => handleInputChange("currentPrice", e.target.value)}
                   placeholder="0.00"
-                  className="pl-7 border-l border-gray-500" // add padding so text doesn’t overlap the "R"
+                  className="pl-7" // add padding so text doesn’t overlap the "R"
                 />
               </div>
             </div>
