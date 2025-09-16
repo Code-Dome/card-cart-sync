@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { CSVImportModal } from "@/components/Inventory/CSVImportModal";
 import { CSVExportModal } from "@/components/Inventory/CSVExportModal";
+import EditProductModal, { Product } from "@/components/Inventory/EditProductModal";
 import { ImportedProduct } from "@/services/csvService";
 
 // Mock product data
@@ -72,6 +73,8 @@ const Products = () => {
   const [products, setProducts] = useState(mockProducts);
   const [importModalOpen, setImportModalOpen] = useState(false);
   const [exportModalOpen, setExportModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const filteredProducts = products.filter(product => 
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -94,6 +97,17 @@ const Products = () => {
     }));
 
     setProducts(prev => [...prev, ...newProducts]);
+  };
+
+  const handleEditProduct = (product: Product) => {
+    setSelectedProduct(product);
+    setEditModalOpen(true);
+  };
+
+  const handleSaveProduct = (updatedProduct: Product) => {
+    setProducts(prev => 
+      prev.map(p => p.id === updatedProduct.id ? updatedProduct : p)
+    );
   };
 
   const getStatusColor = (status: string) => {
@@ -243,7 +257,11 @@ const Products = () => {
               <div className="flex justify-between items-center pt-2 border-t border-border">
                 <span className="text-xs text-muted-foreground">Last sync: {product.lastSync}</span>
                 <div className="flex space-x-1">
-                  <Button size="sm" variant="ghost">
+                  <Button 
+                    size="sm" 
+                    variant="ghost"
+                    onClick={() => handleEditProduct(product)}
+                  >
                     <Edit className="h-4 w-4" />
                   </Button>
                   <Button size="sm" variant="ghost">
@@ -297,7 +315,11 @@ const Products = () => {
                   </TableCell>
                   <TableCell>
                     <div className="flex space-x-2">
-                      <Button size="sm" variant="ghost">
+                      <Button 
+                        size="sm" 
+                        variant="ghost"
+                        onClick={() => handleEditProduct(product)}
+                      >
                         <Edit className="h-4 w-4" />
                       </Button>
                       <Button size="sm" variant="ghost">
@@ -326,6 +348,13 @@ const Products = () => {
         open={exportModalOpen}
         onOpenChange={setExportModalOpen}
         products={products}
+      />
+      
+      <EditProductModal
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+        product={selectedProduct}
+        onSave={handleSaveProduct}
       />
     </div>
   );
