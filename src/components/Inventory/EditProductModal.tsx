@@ -29,15 +29,7 @@ interface EditProductModalProps {
 const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductModalProps) => {
   const { toast } = useToast();
   const [formData, setFormData] = useState<Partial<Product>>({});
-const enableConversion =false;
-
-function displayCurrencySymbol()
-{
-  if (enableConversion) return 'R'
-
-  return '$'
-}
-
+  
   useEffect(() => {
     if (product) {
       setFormData({
@@ -163,7 +155,7 @@ function displayCurrencySymbol()
               <Label htmlFor="shopifyPrice">Shopify Price</Label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 inline-block border-r border-gray-500/60 pr-1">
-                  {displayCurrencySymbol()}
+                  R
                 </span>
                 <Input
                     id="shopifyPrice"
@@ -179,7 +171,7 @@ function displayCurrencySymbol()
               <Label htmlFor="tcgPrice">TCG Price</Label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 inline-block border-r border-gray-500/60 pr-1">
-                {displayCurrencySymbol()}
+                  R
                 </span>
                 <Input
                     id="tcgPrice"
@@ -195,7 +187,7 @@ function displayCurrencySymbol()
               <Label htmlFor="currentPrice">Current Price</Label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 inline-block border-r border-gray-500/60 pr-1">
-                  {displayCurrencySymbol()}
+                  R
                 </span>
                 <Input
                   id="currentPrice"
