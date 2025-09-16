@@ -3,9 +3,6 @@ import { Heart } from 'lucide-react';
 import {Button} from "@/components/ui/button.tsx";
 
 export function Footer() {
-    const currentYear = new Date().getFullYear();
-    const version = 'v1.0.0';
-
     const quickLinks = [
         { name: "Privacy Policy", href: "/privacy", icon: null },
         { name: "Terms of Service", href: "/terms", icon: null },
@@ -34,7 +31,7 @@ export function Footer() {
                         <div className="hidden md:block"/>
                         <div
                             className="flex flex-col items-center text-center md:items-start md:text-left space-y-4 md:col-span-1 md:col-start-3">
-                            <h3 className="text-xl font-bold text-primary px-3">QUICK LINKS</h3>
+                            <h3 className="text-xl font-bold text-primary px-2.5">QUICK LINKS</h3>
                             <ul className={"w-full"}>
                                 {quickLinks.map((link, index) => (
                                     <li key={index}>

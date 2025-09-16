@@ -21,10 +21,9 @@ import { useSettings } from "@/contexts/SettingsContext";
 
 const Integrations = () => {
   const [isShopifyConnected, setIsShopifyConnected] = useState(false);
-  const [livePricingEnabled, setLivePricingEnabled] = useState(false);
   const [isCardKingdomConnected, setIsCardKingdomConnected] = useState(false);
   const { toast } = useToast();
-  const { conversionRate, useFixedRate, setConversionRate, setUseFixedRate } = useSettings();
+  const { conversionRate, enableConversions, setEnableConversions, useFixedRate, setConversionRate, setUseFixedRate } = useSettings();
 
   const handleShopifyConnect = () => {
     // Mock OAuth flow
@@ -53,7 +52,7 @@ const Integrations = () => {
   const handlePriceSync = () => {
     toast({
       title: "Updating Prices...",
-      description: "Fetching latest prices from TCGPlayer",
+      description: "Fetching latest prices from XE.com",
     });
   };
 
@@ -173,21 +172,21 @@ const Integrations = () => {
                   <Zap className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">TCGPlayer</h3>
-                  <p className="text-muted-foreground">Market leader for TCG pricing</p>
+                  <h3 className="text-xl font-semibold">XE.com</h3>
+                  <p className="text-muted-foreground">Real-time currency conversions</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <Label htmlFor="live-pricing">Live Pricing</Label>
+                <Label htmlFor="live-pricing">Enable conversions</Label>
                 <Switch
                   id="live-pricing"
-                  checked={livePricingEnabled}
-                  onCheckedChange={setLivePricingEnabled}
+                  checked={enableConversions}
+                  onCheckedChange={setEnableConversions}
                 />
               </div>
             </div>
 
-            {livePricingEnabled && (
+            {enableConversions && (
               <div className="space-y-6">
                 <div className="space-y-4">
                   <h4 className="font-semibold">Currency Conversion (USD → ZAR)</h4>
@@ -200,11 +199,11 @@ const Integrations = () => {
                       <Label>Fixed Rate</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Switch
+                      <Switch disabled
                         checked={!useFixedRate}
                         onCheckedChange={(checked) => setUseFixedRate(!checked)}
                       />
-                      <Label>Live Exchange Rate</Label>
+                      <Label>Live Exchange Rate (xe.com) - Coming Soon</Label>
                     </div>
                   </div>
                   
@@ -226,15 +225,15 @@ const Integrations = () => {
                   )}
                 </div>
 
-                <div className="flex space-x-2">
-                  <Button onClick={handlePriceSync} className="bg-gradient-primary hover:shadow-primary flex-1">
-                    <RefreshCw className="mr-2 h-4 w-4" />
-                    Sync Prices
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Settings className="h-4 w-4" />
-                  </Button>
-                </div>
+                {/*<div className="flex space-x-2">*/}
+                {/*  <Button onClick={handlePriceSync} className="bg-gradient-primary hover:shadow-primary flex-1">*/}
+                {/*    <RefreshCw className="mr-2 h-4 w-4" />*/}
+                {/*    Set Conversion Rate*/}
+                {/*  </Button>*/}
+                {/*  /!*<Button variant="outline" size="sm">*!/*/}
+                {/*  /!*  <Settings className="h-4 w-4" />*!/*/}
+                {/*  /!*</Button>*!/*/}
+                {/*</div>*/}
               </div>
             )}
           </Card>
@@ -301,36 +300,33 @@ const Integrations = () => {
               </div>
             )}
           </Card>
+          <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="p-3 bg-muted/50 rounded-lg">
+                <Settings className="h-6 w-6 text-muted-foreground" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-muted-foreground">TCGPlayer</h3>
+                <p className="text-sm text-muted-foreground">Premium Card Marketplace</p>
+              </div>
+            </div>
+            <Badge variant="secondary">Coming Soon</Badge>
+          </Card>
+
+          <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="p-3 bg-muted/50 rounded-lg">
+                <Settings className="h-6 w-6 text-muted-foreground" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-muted-foreground">Payment Processing</h3>
+                <p className="text-sm text-muted-foreground">Connect payment gateways</p>
+              </div>
+            </div>
+            <Badge variant="secondary">Coming Soon</Badge>
+          </Card>
+
         </div>
-      </div>
-
-      {/* Additional Integrations */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
-          <div className="flex items-center space-x-4 mb-4">
-            <div className="p-3 bg-muted/50 rounded-lg">
-              <Settings className="h-6 w-6 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-muted-foreground">Payment Processing</h3>
-              <p className="text-sm text-muted-foreground">Connect payment gateways</p>
-            </div>
-          </div>
-          <Badge variant="secondary">Coming Soon</Badge>
-        </Card>
-
-        <Card className="p-6 bg-gradient-card border-border/50 opacity-60">
-          <div className="flex items-center space-x-4 mb-4">
-            <div className="p-3 bg-muted/50 rounded-lg">
-              <Settings className="h-6 w-6 text-muted-foreground" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-muted-foreground">Accounting Software</h3>
-              <p className="text-sm text-muted-foreground">Sync with QuickBooks, Xero</p>
-            </div>
-          </div>
-          <Badge variant="secondary">Coming Soon</Badge>
-        </Card>
       </div>
     </div>
   );

@@ -18,7 +18,8 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useSettings } from "@/contexts/SettingsContext";
 import { CSVService, ImportedProduct } from "@/services/csvService";
-import { Upload, Download, Database, AlertCircle, CheckCircle, DollarSign } from "lucide-react";
+import {Upload, Download, Database, AlertCircle, CheckCircle, DollarSign, HelpCircleIcon} from "lucide-react";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip.tsx";
 
 interface CSVImportModalProps {
   open: boolean;
@@ -32,7 +33,7 @@ export const CSVImportModal = ({
   onImport,
 }: CSVImportModalProps) => {
   const { toast } = useToast();
-  const { getConversionRate } = useSettings();
+  const { getConversionRate, conversionRate, enableConversions } = useSettings();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
@@ -200,15 +201,29 @@ export const CSVImportModal = ({
                     Convert USD to Rand
                   </Label>
                   <p className="text-xs text-muted-foreground">
-                    Convert USD prices to South African Rand (R18.50 = $1.00)
+                    Convert USD prices to South African Rand (R{conversionRate} = $1.00)
                   </p>
                 </div>
               </div>
-              <Switch
-                id="convert-currency"
-                checked={convertToRand}
-                onCheckedChange={setConvertToRand}
-              />
+              <div className={"flex space-x-4"}>
+                <Label className={"flex align-middle items-center justify-center text-red-500/80"}>Enable currency conversions in the integrations tab.</Label>
+                <Switch disabled={!enableConversions}
+                        id="convert-currency"
+                        checked={convertToRand}
+                        onCheckedChange={setConvertToRand}
+                />
+                {/*{!enableConversions && (*/}
+                {/*    <Tooltip>*/}
+                {/*      <TooltipTrigger asChild>*/}
+                {/*        <HelpCircleIcon />*/}
+                {/*      </TooltipTrigger>*/}
+
+                {/*        <TooltipContent className="z-[1000]">*/}
+                {/*          <p>Enable Currency conversion under the integrations tab.</p>*/}
+                {/*        </TooltipContent>*/}
+                {/*    </Tooltip>*/}
+                {/*)}*/}
+              </div>
             </div>
           </Card>
           {/* Scryfall Import Section */}

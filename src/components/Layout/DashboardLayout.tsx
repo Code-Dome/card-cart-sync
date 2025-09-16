@@ -26,11 +26,11 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40">
                 <div className="flex items-center justify-between h-16 px-4 md:px-6">
                   <h2 className={`font-semibold ${isMobile ? 'text-base ml-12' : 'text-lg'}`}>
-                    Welcome, {user?.firstName || user?.emailAddresses[0]?.emailAddress }
+                      Welcome, <strong>{user?.firstName.toUpperCase() || user?.emailAddresses[0]?.emailAddress.toUpperCase()}</strong>
                   </h2>
                   <div className="flex items-center space-x-4">
                     <SubscriptionStatus />
-                    <UserButton afterSignOutUrl="/landing" />
+                    <UserButton />
                   </div>
                 </div>
               </header>

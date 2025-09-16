@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface SettingsContextType {
   conversionRate: number;
+  enableConversions: boolean;
+  setEnableConversions: (enable: boolean) => void;
   useFixedRate: boolean;
   setConversionRate: (rate: number) => void;
   setUseFixedRate: (fixed: boolean) => void;
@@ -17,6 +19,13 @@ interface SettingsProviderProps {
 export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children }) => {
   const [conversionRate, setConversionRateState] = useState(18.50);
   const [useFixedRate, setUseFixedRate] = useState(true);
+
+  const [enableConversions, setEnableConversionsState] = useState(false);
+
+  const setEnableConversions = (enable: boolean) => {
+    setEnableConversionsState(enable);
+    localStorage.setItem("enableConversions", JSON.stringify(enable));
+  }
 
   const setConversionRate = (rate: number) => {
     setConversionRateState(rate);
@@ -44,7 +53,13 @@ export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children }) 
   React.useEffect(() => {
     const savedRate = localStorage.getItem('conversionRate');
     const savedUseFixed = localStorage.getItem('useFixedRate');
-    
+    const enableConversions = localStorage.getItem('enableConversions');
+
+    if (enableConversions)
+    {
+      setEnableConversionsState(Boolean(enableConversions))
+    }
+
     if (savedRate) {
       setConversionRateState(Number(savedRate));
     }
@@ -61,6 +76,8 @@ export const SettingsProvider: React.FC<SettingsProviderProps> = ({ children }) 
   return (
     <SettingsContext.Provider value={{
       conversionRate,
+      enableConversions,
+      setEnableConversions,
       useFixedRate,
       setConversionRate,
       setUseFixedRate,

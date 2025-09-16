@@ -20,9 +20,9 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard, requiresPlan: true, showIfPro: true },
   { name: "Products", href: "/products", icon: Package, requiresPlan: true, showIfPro: true },
-  { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true, showIfPro: true },
-  { name: "Customers", href: "/customers", icon: Users, requiresPlan: true, showIfPro: true },
-  { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true, showIfPro: true },
+  // { name: "Sales", href: "/sales", icon: ShoppingCart, requiresPlan: true, showIfPro: true },
+  // { name: "Customers", href: "/customers", icon: Users, requiresPlan: true, showIfPro: true },
+  // { name: "Analytics", href: "/analytics", icon: BarChart3, requiresPlan: true, showIfPro: true },
   { name: "Integrations", href: "/integrations", icon: LinkIcon, requiresPlan: true, showIfPro: true },
   { name: "Pricing", href: "/pricing", icon: CreditCard, requiresPlan: false, showIfPro: false },
   // { name: "Settings", href: "/settings", icon: Settings, requiresPlan: false },

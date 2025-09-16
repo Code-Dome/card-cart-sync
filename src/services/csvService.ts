@@ -1,3 +1,5 @@
+import {parseStatus, ProductStatus} from "@/types/productStatus.ts";
+
 export interface ScryfallCard {
   id: string;
   name: string;
@@ -43,7 +45,7 @@ export interface ImportedProduct {
   tcgPrice: string;
   currentPrice: string;
   stock: number;
-  status: string;
+  status: ProductStatus;
   scryfallId?: string;
   set: string;
   rarity: string;
@@ -84,7 +86,7 @@ export class CSVService {
       tcgPrice: card.prices.usd ? `$${card.prices.usd}` : 'N/A',
       currentPrice: card.prices.usd ? `$${card.prices.usd}` : 'N/A',
       stock: 0, // Default stock
-      status: 'Out of Stock',
+      status: ProductStatus.OUT_OF_STOCK,
       scryfallId: card.id,
       set: card.set_name,
       rarity: card.rarity,
@@ -137,7 +139,7 @@ export class CSVService {
                   product.stock = parseInt(value) || 0;
                   break;
                 case 'status':
-                  product.status = value;
+                  product.status = parseStatus(value);
                   break;
                 case 'set':
                   product.set = value;
@@ -160,7 +162,7 @@ export class CSVService {
                 tcgPrice: product.tcgPrice || 'N/A',
                 currentPrice: product.currentPrice || 'N/A',
                 stock: product.stock || 0,
-                status: product.status || (product.stock && product.stock > 0 ? 'In Stock' : 'Out of Stock'),
+                status: product.status || (product.stock && product.stock > 0 ? ProductStatus.IN_STOCK : ProductStatus.OUT_OF_STOCK),
                 set: product.set || 'Unknown',
                 rarity: product.rarity || 'common',
                 collectorNumber: product.collectorNumber || '',
