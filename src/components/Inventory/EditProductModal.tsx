@@ -153,22 +153,34 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="shopifyPrice">Shopify Price</Label>
-              <Input
-                id="shopifyPrice"
+              div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  R
+                </span>
+                <Input
+                    id="shopifyPrice"
                 value={formData.shopifyPrice || ""}
                 onChange={(e) => handleInputChange("shopifyPrice", e.target.value)}
-                placeholder="R 0.00"
-              />
+                  placeholder="0.00"
+                  className="pl-7" // add padding so text doesn’t overlap the "R"
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="tcgPrice">TCG Price</Label>
-              <Input
-                id="tcgPrice"
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  R
+                </span>
+                <Input
+                    id="tcgPrice"
                 value={formData.tcgPrice || ""}
                 onChange={(e) => handleInputChange("tcgPrice", e.target.value)}
-                placeholder="R 0.00"
-              />
+                  placeholder="0.00"
+                  className="pl-7" // add padding so text doesn’t overlap the "R"
+                />
+              </div>
             </div>
 
             <div className="space-y-2">
