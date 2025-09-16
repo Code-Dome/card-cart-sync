@@ -186,7 +186,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
             <div className="space-y-2">
               <Label htmlFor="currentPrice">Current Price</Label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 border-r border-gray-500">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pr-2 border-r border-gray-500">
                   R
                 </span>
                 <Input
