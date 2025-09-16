@@ -79,7 +79,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
 
     onSave(updatedProduct);
     onOpenChange(false);
-    
+
     toast({
       title: "Product Updated",
       description: `${updatedProduct.name} has been successfully updated.`,
@@ -94,7 +94,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
         <DialogHeader>
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -106,7 +106,7 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
                 placeholder="Enter product name"
               />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="sku">SKU *</Label>
               <Input
@@ -121,8 +121,8 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="category">Category *</Label>
-              <Select 
-                value={formData.category || ""} 
+              <Select
+                value={formData.category || ""}
                 onValueChange={(value) => handleInputChange("category", value)}
               >
                 <SelectTrigger>
@@ -171,26 +171,27 @@ const EditProductModal = ({ open, onOpenChange, product, onSave }: EditProductMo
               />
             </div>
 
-         <div className="space-y-2">
-  <Label htmlFor="currentPrice">Current Price</Label>
-  <div className="relative">
-    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
-      R
-    </span>
-    <Input
-      id="currentPrice"
-      value={formData.currentPrice || ""}
-      onChange={(e) => handleInputChange("currentPrice", e.target.value)}
-      placeholder="0.00"
-      className="pl-7" // add padding so text doesn’t overlap the "R"
-    />
-  </div>
-</div>
+            <div className="space-y-2">
+              <Label htmlFor="currentPrice">Current Price</Label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                  R
+                </span>
+                <Input
+                  id="currentPrice"
+                  value={formData.currentPrice || ""}
+                  onChange={(e) => handleInputChange("currentPrice", e.target.value)}
+                  placeholder="0.00"
+                  className="pl-7" // add padding so text doesn’t overlap the "R"
+                />
+              </div>
+            </div>
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="status">Status</Label>
-            <Select 
-              value={formData.status || ""} 
+            <Select
+              value={formData.status || ""}
               onValueChange={(value) => handleInputChange("status", value)}
             >
               <SelectTrigger>
